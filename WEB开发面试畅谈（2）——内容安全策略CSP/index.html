@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="张炳,铭牌饼饼,markbzhang" />
+  <meta name="keywords" content="开发面谈 面试," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="web全栈，读书，适量运动，投资，收集工具">
-<meta name="keywords" content="张炳，铭牌饼饼，markbzhang">
-<meta property="og:type" content="website">
-<meta property="og:title" content="铭牌饼饼">
-<meta property="og:url" content="http://yoursite.com/archives/2018/04/index.html">
+<meta name="description" content="什么是CSP？CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。更多关于CSP的介绍可以参考">
+<meta name="keywords" content="开发面谈 面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WEB开发面试畅谈（2）——内容安全策略CSP">
+<meta property="og:url" content="http://www.zhangbing.name/WEB开发面试畅谈（2）——内容安全策略CSP/index.html">
 <meta property="og:site_name" content="铭牌饼饼">
-<meta property="og:description" content="web全栈，读书，适量运动，投资，收集工具">
+<meta property="og:description" content="什么是CSP？CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。更多关于CSP的介绍可以参考">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-19T03:36:28.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="铭牌饼饼">
-<meta name="twitter:description" content="web全栈，读书，适量运动，投资，收集工具">
+<meta name="twitter:title" content="WEB开发面试畅谈（2）——内容安全策略CSP">
+<meta name="twitter:description" content="什么是CSP？CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。更多关于CSP的介绍可以参考">
 
 
 
@@ -99,7 +100,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/04/"/>
+  <link rel="canonical" href="http://www.zhangbing.name/WEB开发面试畅谈（2）——内容安全策略CSP/"/>
 
 
 
 
 
-  <title>归档 | 铭牌饼饼</title>
+  <title>WEB开发面试畅谈（2）——内容安全策略CSP | 铭牌饼饼</title>
   
 
 
@@ -144,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,74 +273,214 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 2 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhangbing.name/WEB开发面试畅谈（2）——内容安全策略CSP/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张炳">
+      <meta itemprop="description" content="web全栈，分析应用，收集工具，读书，适量运动">
+      <meta itemprop="image" content="/images/myhead.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="铭牌饼饼">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/04/13/Hexo模板标签测试案例/" itemprop="url">
-              
-                <span itemprop="name">Hexo模板标签测试案例</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">WEB开发面试畅谈（2）——内容安全策略CSP</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-13T16:22:52+08:00"
-              content="2018-04-13" >
-          04-13
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T23:05:58+08:00">
+                2018-06-03
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,621
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h1 id="什么是CSP？"><a href="#什么是CSP？" class="headerlink" title="什么是CSP？"></a>什么是CSP？</h1><p>CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。<br>CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。<br>更多关于CSP的介绍可以参考W3C的相关文档： <a href="https://dvcs.w3.org/hg/content-security-policy/raw-file/tip/csp-specification.dev.html#content-security-policy-header-field" target="_blank" rel="noopener">https://dvcs.w3.org/hg/content-security-policy/raw-file/tip/csp-specification.dev.html#content-security-policy-header-field</a><br>一部分中文翻译：CSP - HTML5 Chinese Interest Group Wiki(<a href="https://www.w3.org/html/ig/zh/wiki/CSP" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/CSP</a>)<br>CSP的讨论<br>CSP的出现可以一定程度上的减少XSS的攻击，但不一定意味着XSS的消失。<br>挺久之前过了一遍CSP的安全策略，很多人把它喻为XSS攻击的终结者，因为这种策略不再像传统只靠各种正则和特征匹配来识别跨站攻击Payload，而是直接从协议层把一些存在安全隐患的用法默认给干掉了，把同源同域更发挥到了极致。把之前整理的内容发到这里吧。</p>
+<ol>
+<li>只允许本站资源Content-Security-Policy： default-src‘self’</li>
+<li>允许本站的资源以及任意位置的图片以及<a href="http://trustedscripts.example.com下的脚本。" target="_blank" rel="noopener">http://trustedscripts.example.com下的脚本。</a><br> Content-Security-Policy： default-src ‘self’；img-src *；<br> script-src <a href="http://trustedscripts.example.com" target="_blank" rel="noopener">http://trustedscripts.example.com</a></li>
+<li>CSP策略在默认的情况下是不允许使用data URIs资源的,如果要使用，那么需要显示的指定,比如:img-src ‘self’ data:</li>
+<li>script-src：在处理脚本资源的时候设置”unsafe-inline”可以阻止内联Js代码的执行。使用unsafe-eval开关可以禁止eval,setTimeout,setInterval函数的执行。</li>
+<li>object-src：控制embed,code,archive applet等对象。</li>
+<li>style-src：会控制样式表@import和rel时所引入的URI资源，设置unsafe-inline规则可以是浏览器拒绝解析内部样式和内联样式定义。并不会阻止链入外部样式表。</li>
+<li>img-src：可以控制图片资源的连接，包括img标签的src属性，以及CSS3中的url()和image()方法，以及link标签中的href属性(当rel设置成与图像相关的值，比如HTML支持的icon)</li>
+<li>media-src:控制媒体类型的外部链入资源，如video, audio, source, 和track标签的src属性。</li>
+<li>frame-src:控制内嵌框架包含的外部页面连接：iframe or a frame。</li>
+<li>font-src：控制CSS中的@font-face</li>
+<li>connect-src：控制XMLHttpRequest中的open()，WebSocket，EventSource</li>
+<li>inline script和eval类型函数(包括eval、setInterval、setTimeout和new Function())是不被执行的。另外data URIs也是默认不允许使用的，XBL,只允许通过chrome:和resource:形式uri请求的XBL,其它的比如在CSS中通过-moz-binding来指定的XBL则不允许被执行。</li>
+</ol>
+<p>早期WEB开发的规范并不明确，为了向前兼容性，最新的浏览器仍兼容着最古老而且可能存在风险的语法和接口 。通俗的讲，CSP明确地告诉我们，哪些WEB开发行为对于宽松模式来说是可以使用的，但出于安全问题我们应尽早摒弃。我们不仅要做到实现更能，而且要更好更安全地实现。<br>下面例举个CSP适用的实际场景，大家会一目了然CSP的约束内容</p>
+<h1 id="不执行Inline-JavaScript"><a href="#不执行Inline-JavaScript" class="headerlink" title="不执行Inline JavaScript"></a>不执行Inline JavaScript</h1><p>Inline JavaScript和eval一样危险，将不会被执行。这条规则将同时禁止内嵌&lt; script &gt;块和内联事件（例如： &lt; button onclick=”…” &gt;;&lt; ahref=”javascript:…”&gt;）。<br>这条规则通过禁止第三方脚本避免大量的跨脚本攻击。同时它还强制您编写内容与表现分离的代码（这本就是您该做的，对吧？）。用个例子说明这一点：假设您在一个单独的popup.html文件中实现如下Browser Action弹出页：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;title&gt;My Awesome Popup!&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">function awesome() &#123;</span><br><span class="line"></span><br><span class="line">              // do something awesome!</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">functiontotallyAwesome() &#123;</span><br><span class="line"></span><br><span class="line">              // do something TOTALLY awesome!</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">functionclickHandler(element) &#123;</span><br><span class="line"></span><br><span class="line">setTimeout(&quot;awesome(); totallyAwesome()&quot;, 1000);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;button onclick=&quot;clickHandler(this)&quot;&gt;</span><br><span class="line">            Click for awesomeness!</span><br><span class="line">&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure><br>为了使它能以您所希望的方式运行，结合本规则，需要做以下三个方面的修改：<br>·         clickHandler的定义需移到外部JavaScript文件中（如：popup.js）。<br>·         内联事件需通过addEventListener，并移到外部popup.js文件中实现。<br>·         为了避免使用转换字符串到JavaScript的函数”awesome(); totallyAwesome()”的执行，setTimeout调用需要重写。<br>修改之后将会像下面这样：<br>popup.js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">function awesome() &#123;</span><br><span class="line"></span><br><span class="line">          // Do something awesome!</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">functiontotallyAwesome() &#123;</span><br><span class="line"></span><br><span class="line">          // do something TOTALLY awesome!</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">functionawesomeTask() &#123;</span><br><span class="line"></span><br><span class="line">awesome();</span><br><span class="line"></span><br><span class="line">totallyAwesome();</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">functionclickHandler(e) &#123;</span><br><span class="line"></span><br><span class="line">setTimeout(awesomeTask, 1000);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Add event listeners once the DOM has fully loaded by listening for the</span><br><span class="line"></span><br><span class="line">        // `DOMContentLoaded` event on the document, and adding your listeners to</span><br><span class="line"></span><br><span class="line">        // specific elements when it triggers.</span><br><span class="line"></span><br><span class="line">document.addEventListener(&apos;DOMContentLoaded&apos;, function () &#123;</span><br><span class="line"></span><br><span class="line">document.querySelector(&apos;button&apos;).addEventListener(&apos;click&apos;, clickHandler);</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line">  popup.html:</span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;title&gt;My Awesome Popup!&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;popup.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;button&gt;Click for awesomeness!&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt; </span><br></pre></td></tr></table></figure></p>
+<h1 id="综述："><a href="#综述：" class="headerlink" title="综述："></a>综述：</h1><p>首先CSP是可以在一定程度上提高XSS的攻击难度的，甚至杜绝XSS，前提是CSP策略用的好。还要考虑CSP能否普及，因为CSP在提供安全性的同时也提高了前端逻辑的复杂度，很多资源需要调整，类似QQ，新浪，搜狐这样的站群，想通过合适的CSP同时提高安全性和易用性是很难的。但是我们仍要尽可能使用更加规范的编码方式提高WEB开发的质量</p>
+<p>目前CSP规范并未应用于全部浏览器，仅仅新浏览器会得到支持。但是遵循CSP规范开发的WEB应用将获得更好的代码结构和用户体验，大大提高安全性。这可能会彻底改变你之前的开发习惯和方式。甚至你会恍然发现，之前的代码是如此脆弱不堪。甚至会有些不适。但是，时代总是向前发展的。当你渐渐习惯并接受了它，才发现它带来的无尽好处，助你在web开发的道路上走得更快更好。</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    张炳
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.zhangbing.name/WEB开发面试畅谈（2）——内容安全策略CSP/" title="WEB开发面试畅谈（2）——内容安全策略CSP">http://www.zhangbing.name/WEB开发面试畅谈（2）——内容安全策略CSP/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开发面谈-面试/" rel="tag"># 开发面谈 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/WEB开发面试畅谈（1）——Javascript封闭性设计/" rel="next" title="WEB开发面试畅谈（1）——Javascript封闭性设计">
+                <i class="fa fa-chevron-left"></i> WEB开发面试畅谈（1）——Javascript封闭性设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -347,6 +488,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -362,18 +507,33 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/myhead.jpg"
+                alt="张炳" />
+            
               <p class="site-author-name" itemprop="name">张炳</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">web全栈，分析应用，收集工具，读书，适量运动</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -383,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -432,6 +592,12 @@
 
           
           
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
 
           
           
@@ -442,7 +608,30 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
 
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是CSP？"><span class="nav-number">1.</span> <span class="nav-text">什么是CSP？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不执行Inline-JavaScript"><span class="nav-number">2.</span> <span class="nav-text">不执行Inline JavaScript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#综述："><span class="nav-number">3.</span> <span class="nav-text">综述：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -469,7 +658,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">677</span>
+    <span title="Site words total count">3.4k</span>
   
 </div>
 
@@ -499,11 +688,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -589,6 +773,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1020,13 +1208,13 @@
       var articles = db.collection('articles')
 
       //https://hexo.io/zh-tw/docs/variables.html
-      var isPost = ''.length > 0
+      var isPost = 'WEB开发面试畅谈（2）——内容安全策略CSP'.length > 0
       var isArchive = '' === 'true'
       var isCategory = ''.length > 0
       var isTag = ''.length > 0
 
       if (isPost) { //is article page
-        var title = ''
+        var title = 'WEB开发面试畅谈（2）——内容安全策略CSP'
         var doc = articles.doc(title)
 
         getCount(doc, true).then(appendCountTo($('.post-meta')))
@@ -1034,7 +1222,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Hexo模板标签测试案例");' //if you have a better way to get titles of posts, please change it
+        var postsstr = '' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
