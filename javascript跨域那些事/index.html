@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo," />
+  <meta name="keywords" content="跨域," />
 
 
 
@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="No arguments. Plain blockquote.：Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed d">
-<meta name="keywords" content="Hexo">
+<meta name="description" content="最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。 Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和ifram">
+<meta name="keywords" content="跨域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo模板标签测试案例">
-<meta property="og:url" content="http://zhangbing.name/Hexo模板标签测试案例/index.html">
+<meta property="og:title" content="javascript跨域">
+<meta property="og:url" content="http://zhangbing.name/javascript跨域那些事/index.html">
 <meta property="og:site_name" content="铭牌饼饼">
-<meta property="og:description" content="No arguments. Plain blockquote.：Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed d">
+<meta property="og:description" content="最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。 Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和ifram">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://zhangbing.name/path/to/image">
-<meta property="og:image" content="http://zhangbing.name/images/qq.jpg">
-<meta property="og:updated_time" content="2018-06-19T03:09:53.374Z">
+<meta property="og:image" content="http://zhangbing.name/images/20180423/2018-04-23-01.jpg">
+<meta property="og:image" content="http://zhangbing.name/images/20180423/2018-04-23-02.jpeg">
+<meta property="og:updated_time" content="2018-06-20T10:19:02.959Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo模板标签测试案例">
-<meta name="twitter:description" content="No arguments. Plain blockquote.：Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed d">
-<meta name="twitter:image" content="http://zhangbing.name/path/to/image">
+<meta name="twitter:title" content="javascript跨域">
+<meta name="twitter:description" content="最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。 Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和ifram">
+<meta name="twitter:image" content="http://zhangbing.name/images/20180423/2018-04-23-01.jpg">
 
 
 
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://zhangbing.name/Hexo模板标签测试案例/"/>
+  <link rel="canonical" href="http://zhangbing.name/javascript跨域那些事/"/>
 
 
 
 
 
-  <title>Hexo模板标签测试案例 | 铭牌饼饼</title>
+  <title>javascript跨域 | 铭牌饼饼</title>
   
 
 
@@ -300,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangbing.name/Hexo模板标签测试案例/">
+    <link itemprop="mainEntityOfPage" href="http://zhangbing.name/javascript跨域那些事/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张炳">
@@ -317,7 +317,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hexo模板标签测试案例</h2>
+          <h2 class="post-title" itemprop="name headline">javascript跨域</h2>
         
 
         <div class="post-meta">
@@ -329,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T16:22:52+08:00">
-                2018-02-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T10:02:20+08:00">
+                2018-04-23
               </time>
             
 
@@ -366,7 +366,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  307
+                  1,788
                 </span>
               
 
@@ -382,7 +382,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  7
                 </span>
               
             </div>
@@ -403,36 +403,32 @@
       
 
       
-        <h1 id="No-arguments-Plain-blockquote-："><a href="#No-arguments-Plain-blockquote-：" class="headerlink" title="No arguments. Plain blockquote.："></a>No arguments. Plain blockquote.：</h1><blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-</blockquote>
-<h1 id="Quote-from-a-book："><a href="#Quote-from-a-book：" class="headerlink" title="Quote from a book："></a>Quote from a book：</h1><blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
-<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
-<h1 id="Quote-from-Twitter："><a href="#Quote-from-Twitter：" class="headerlink" title="Quote from Twitter："></a>Quote from Twitter：</h1><blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io" target="_blank" rel="noopener">http://devdocs.io</a></p>
-<footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752" target="_blank" rel="noopener">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
-<h1 id="Quote-from-an-article-on-the-web："><a href="#Quote-from-an-article-on-the-web：" class="headerlink" title="Quote from an article on the web："></a>Quote from an article on the web：</h1><blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
-<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="noopener">Welcome to Island Marketing</a></cite></footer></blockquote>
-<h1 id="A-plain-code-block："><a href="#A-plain-code-block：" class="headerlink" title="A plain code block："></a>A plain code block：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(&apos;Hello World!&apos;);</span><br></pre></td></tr></table></figure>
-<h1 id="Specifying-the-language："><a href="#Specifying-the-language：" class="headerlink" title="Specifying the language："></a>Specifying the language：</h1><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[rectangle setX: <span class="number">10</span> y: <span class="number">10</span> width: <span class="number">20</span> height: <span class="number">20</span>];</span><br></pre></td></tr></table></figure>
-<h1 id="Adding-a-caption-to-the-code-block："><a href="#Adding-a-caption-to-the-code-block：" class="headerlink" title="Adding a caption to the code block："></a>Adding a caption to the code block：</h1><figure class="highlight plain"><figcaption><span>Array.map</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.map(callback[, thisArg])</span><br></pre></td></tr></table></figure>
-<h1 id="Adding-a-caption-and-a-URL："><a href="#Adding-a-caption-and-a-URL：" class="headerlink" title="Adding a caption and a URL："></a>Adding a caption and a URL：</h1><figure class="highlight plain"><figcaption><span>_.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="noopener">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([0, 1, false, 2, &apos;&apos;, 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
-<h1 id="To-add-pull-quotes-to-your-posts"><a href="#To-add-pull-quotes-to-your-posts" class="headerlink" title="To add pull quotes to your posts:"></a>To add pull quotes to your posts:</h1><blockquote class="pullquote [class]"><p>content</p>
-</blockquote>
-<h1 id="To-embed-a-jsFiddle-snippet"><a href="#To-embed-a-jsFiddle-snippet" class="headerlink" title="To embed a jsFiddle snippet:"></a>To embed a jsFiddle snippet:</h1><iframe scrolling="no" width="[width]" height="[height]" src="//jsfiddle.net/shorttag/embedded/[tabs]/[skin]" frameborder="0" allowfullscreen></iframe>
-<h1 id="To-embed-a-Gist-snippet"><a href="#To-embed-a-Gist-snippet" class="headerlink" title="To embed a Gist snippet:"></a>To embed a Gist snippet:</h1><script src="//gist.github.com/gist_id.js?file=[filename]"></script>
-<h1 id="To-embed-an-iframe"><a href="#To-embed-an-iframe" class="headerlink" title="To embed an iframe:"></a>To embed an iframe:</h1><iframe src="url" width="[width]" height="[height]" frameborder="0" allowfullscreen></iframe>
-<h1 id="Inserts-an-image-with-specified-size："><a href="#Inserts-an-image-with-specified-size：" class="headerlink" title="Inserts an image with specified size："></a>Inserts an image with specified size：</h1><img src="/path/to/image" class="[class names]" title="[width] [height] [title text [alt text]]">
-<h1 id="Inserts-a-link-with-target-”-blank”-attribute："><a href="#Inserts-a-link-with-target-”-blank”-attribute：" class="headerlink" title="Inserts a link with target=”_blank” attribute："></a>Inserts a link with target=”_blank” attribute：</h1><a>text url [external] [title]</a>
-<h1 id="Inserts-code-snippets-in-source-downloads-code-folder："><a href="#Inserts-code-snippets-in-source-downloads-code-folder：" class="headerlink" title="Inserts code snippets in source/downloads/code folder："></a>Inserts code snippets in source/downloads/code folder：</h1>
-<h1 id="Include-links-to-other-posts："><a href="#Include-links-to-other-posts：" class="headerlink" title="Include links to other posts："></a>Include links to other posts：</h1>
-
-<h1 id="Include-post-assets："><a href="#Include-post-assets：" class="headerlink" title="Include post assets："></a>Include post assets：</h1>
-
-
-<h1 id="If-certain-content-is-causing-processing-issues-in-your-posts-wrap-it-with-the-raw-tag-to-avoid-rendering-errors："><a href="#If-certain-content-is-causing-processing-issues-in-your-posts-wrap-it-with-the-raw-tag-to-avoid-rendering-errors：" class="headerlink" title="If certain content is causing processing issues in your posts, wrap it with the raw tag to avoid rendering errors："></a>If certain content is causing processing issues in your posts, wrap it with the raw tag to avoid rendering errors：</h1>
-content
-
-<h1 id="Use-text-placed-before-the-tag-as-an-excerpt-for-the-post："><a href="#Use-text-placed-before-the-tag-as-an-excerpt-for-the-post：" class="headerlink" title="Use text placed before the  tag as an excerpt for the post："></a>Use text placed before the <a id="more"></a> tag as an excerpt for the post：</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br><!-- more --><br>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h1 id="图像："><a href="#图像：" class="headerlink" title="图像："></a>图像：</h1><p><img src="/images/qq.jpg" alt=""></p>
+        <p>最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。</p>
+<p>Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和iframe应用中，使用跨域的web service会成为一个问题。</p>
+<h1 id="javascript跨域图表"><a href="#javascript跨域图表" class="headerlink" title="javascript跨域图表"></a>javascript跨域图表</h1><p>那到底什么是跨域，简单地理解就是因为JavaScript同源策略的限制，a.com 域名下的js无法操作b.com或是c.a.com域名下的对象。更详细的说明可以看下表：</p>
+<p><img src="/images/20180423/2018-04-23-01.jpg" alt="alt text"></p>
+<p> 特别注意两点：</p>
+<ul>
+<li>第一，如果是协议和端口造成的跨域问题“前台”是无能为力的，</li>
+<li><p>第二：在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。<br>   “URL的首部”指window.location.protocol +window.location.host，也可以理解为“Domains, protocols and ports must match”（本段来自网络，个人觉得这段对js跨域描述得在清晰不过了）。</p>
+<p>跨域请求无处不在，平时我们在开发活动过程中，活动静态页面通过Javascript访问前端CGI就是明显的主域相同，子域不同的跨域例子，一般活动静态页面都是类似这样的(http://业务名.xx.com/act/活动目录/xxx.html)，前端CGI 是这样的(<a href="http://www.xx.com/act/活动目录/xxx.cgi)" target="_blank" rel="noopener">http://www.xx.com/act/活动目录/xxx.cgi)</a>, 下面来看看我们都是如何处理跨域请求的：</p>
+<h1 id="动态创建script"><a href="#动态创建script" class="headerlink" title="动态创建script"></a>动态创建script</h1><p>虽然浏览器默认禁止了跨域访问，但并不禁止在页面中引用其他域的JS文件，script标签的src属性引用指向接收方的一个处理地址（后台），该地址返回的javascript方法会被执行，另外URL中可以传入一些参数，该方法只支持GET方式提交参数。我们常用FloadJS方法用的就是这种跨域方式。</p>
+<p><img src="/images/20180423/2018-04-23-02.jpeg" alt="alt text"></p>
+<h1 id="使用Jquery中getScript和getJson方法实现跨域"><a href="#使用Jquery中getScript和getJson方法实现跨域" class="headerlink" title="使用Jquery中getScript和getJson方法实现跨域"></a>使用Jquery中getScript和getJson方法实现跨域</h1><p>Jquery 的getScript 和 getJson方法都可以调用跨域的js或服务端脚本，但是它们的实现原理不一样。</p>
+</li>
+</ul>
+<ol>
+<li>getScript 方法<br>语法：jQuery.getScript(url,success(response,status))<br>该函数是简写的 Ajax 函数，等价于：<br> $.ajax({<br>   Type: get,<br>   url: url,<br>   dataType: “script”,<br>   success: success<br> });<br>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。</li>
+</ol>
+<p><strong>实现跨域的原理：通过 GET 方式请求载入并执行一个 JavaScript 文件， 相当于通过src的形式的导入一个外部的js</strong></p>
+<ol start="2">
+<li>getJson方法<br>语法：jQuery.getJSON(url,data,success(data,status,xhr))<br>该函数是简写的 Ajax 函数，等价于：<br> $.ajax({<br>   url: url,<br>   data: data,<br>   success: callback,<br>   dataType: json<br> });<br>在 jQuery 1.2 中，您可以通过使用 JSONP 形式的回调函数来加载其他网域的 JSON 数据，如 “myurl?callback=?”。jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。<br><strong>实现跨域的原理：采用Jsonp原理实现跨域</strong><br>到这里大家有没有发现一个问题，好像一直都在讨论http get 请求方式的跨域问题，难道post 请求就不存在跨域问题吗？其实原生态From 表单 POST 到一个后台处理脚本是不存在跨域问题，因为提交过程不牵涉到JS操作其它域名的对象，可是POST表单后，页面会刷新，给用户带来的体验不佳，这时我们经常会想到用jquery ajax post 方法来提交表单， 虽然这种方式不会刷新页面，但是会存在跨域问题。因为ajax本身实际上是通过XMLHttpRequest对象来进行数据的交互，而浏览器出于安全考虑，是不允许js代码进行跨域操作，进而会发警告，所以jquery  ajax  post 是行不通的，可能这时有人会说，用jsonp数据类型啊，但是jsonp目前只支持get请求方式，对post请求不支持。我们在平时开发过程又不得不用post方式，因为get方式对请求的数量有大小限制，那在这种情况下如何保证用户良好的页面体验，又能解决跨域问题呢? 其实这时我们可以用最常见的document.domain + iframe 方式来实现。</li>
+</ol>
+<h1 id="document-domain-iframe"><a href="#document-domain-iframe" class="headerlink" title="document.domain + iframe"></a>document.domain + iframe</h1><p>这种方式只适用主域名相同，子域名不同的情形，在我们项目开发过程，这种方式还是比较适用。</p>
+<h1 id="服务端代理"><a href="#服务端代理" class="headerlink" title="服务端代理"></a>服务端代理</h1><p>从上面的说明可以看到，客户端的解决方案局存在一定的局限性，而且对于ajax跨域请求，无论两个域是否属于同个基础域，都无法在客户端加以解决，也就是说如果我们要想在ajax请求中访问其他域下的数据，就只能通过服务端进行处理了。服务端的解决方案的基本原理就是，由客户端将请求发给本域服务器，再由本域服务器的代理来请求数据并将响应返回给客户端。</p>
+<h1 id="使用HTML-5-postMessage方式"><a href="#使用HTML-5-postMessage方式" class="headerlink" title="使用HTML 5  postMessage方式"></a>使用HTML 5  postMessage方式</h1><p>HTML5中最酷的新功能之一就是 跨文档消息传输Cross Document Messaging。下一代浏览器都将支持这个功能：Chrome 2.0+、Internet Explorer 8.0+, Firefox 3.0+, Opera 9.6+, 和 Safari 4.0+ 。 Facebook已经使用了这个功能，用postMessage支持基于web的实时消息传递。<br>otherWindow.postMessage(message, targetOrigin);<br>otherWindow: 对接收信息页面的window的引用。可以是页面中iframe的contentWindow属性；window.open的返回值；通过name或下标从window.frames取到的值。<br>message: 所要发送的数据，string类型。<br>targetOrigin: 用于限制otherWindow，“*”表示不作限制<br>a.com/index.html中的代码。<br><strong>但是HTML5 在IE6, IE7浏览器下不兼容，目前移动端解决跨域问题用得比较多， PC机上用得比较少。</strong></p>
+<h1 id="使用flash"><a href="#使用flash" class="headerlink" title="使用flash"></a>使用flash</h1><p>如果你要读取一个外部文件，比如swf，picture，mp3等等，那么就需要一个跨域策略文件,allow-access-from domain表示允许访问的URl，如果有多个依次添加，如果允许所有就一个 allow-access-from domain = “*”就可以了。</p>
+<h1 id="个人小结"><a href="#个人小结" class="headerlink" title="个人小结"></a>个人小结</h1><p>在项目开发过程如果能用get方式解决的就尽量使用它，毕竟get的性能也比post高，而且处理get跨域请求的方法也比较多，比如用jquery库的 getScript和getJson方法。如果提交的数据比较大，一定用post方式提交，并且考虑用户的功能体验，可以用document.domain + iframe的方式来处理。</p>
 
       
     </div>
@@ -453,7 +449,7 @@ content
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://zhangbing.name/Hexo模板标签测试案例/" title="Hexo模板标签测试案例">http://zhangbing.name/Hexo模板标签测试案例/</a>
+    <a href="http://zhangbing.name/javascript跨域那些事/" title="javascript跨域">http://zhangbing.name/javascript跨域那些事/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -468,7 +464,7 @@ content
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/跨域/" rel="tag"># 跨域</a>
           
         </div>
       
@@ -646,7 +642,7 @@ content
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#No-arguments-Plain-blockquote-："><span class="nav-number">1.</span> <span class="nav-text">No arguments. Plain blockquote.：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quote-from-a-book："><span class="nav-number">2.</span> <span class="nav-text">Quote from a book：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quote-from-Twitter："><span class="nav-number">3.</span> <span class="nav-text">Quote from Twitter：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quote-from-an-article-on-the-web："><span class="nav-number">4.</span> <span class="nav-text">Quote from an article on the web：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-plain-code-block："><span class="nav-number">5.</span> <span class="nav-text">A plain code block：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Specifying-the-language："><span class="nav-number">6.</span> <span class="nav-text">Specifying the language：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Adding-a-caption-to-the-code-block："><span class="nav-number">7.</span> <span class="nav-text">Adding a caption to the code block：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Adding-a-caption-and-a-URL："><span class="nav-number">8.</span> <span class="nav-text">Adding a caption and a URL：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#To-add-pull-quotes-to-your-posts"><span class="nav-number">9.</span> <span class="nav-text">To add pull quotes to your posts:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#To-embed-a-jsFiddle-snippet"><span class="nav-number">10.</span> <span class="nav-text">To embed a jsFiddle snippet:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#To-embed-a-Gist-snippet"><span class="nav-number">11.</span> <span class="nav-text">To embed a Gist snippet:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#To-embed-an-iframe"><span class="nav-number">12.</span> <span class="nav-text">To embed an iframe:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Inserts-an-image-with-specified-size："><span class="nav-number">13.</span> <span class="nav-text">Inserts an image with specified size：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Inserts-a-link-with-target-”-blank”-attribute："><span class="nav-number">14.</span> <span class="nav-text">Inserts a link with target=”_blank” attribute：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Inserts-code-snippets-in-source-downloads-code-folder："><span class="nav-number">15.</span> <span class="nav-text">Inserts code snippets in source/downloads/code folder：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Include-links-to-other-posts："><span class="nav-number">16.</span> <span class="nav-text">Include links to other posts：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Include-post-assets："><span class="nav-number">17.</span> <span class="nav-text">Include post assets：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-certain-content-is-causing-processing-issues-in-your-posts-wrap-it-with-the-raw-tag-to-avoid-rendering-errors："><span class="nav-number">18.</span> <span class="nav-text">If certain content is causing processing issues in your posts, wrap it with the raw tag to avoid rendering errors：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Use-text-placed-before-the-tag-as-an-excerpt-for-the-post："><span class="nav-number">19.</span> <span class="nav-text">Use text placed before the  tag as an excerpt for the post：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图像："><span class="nav-number">20.</span> <span class="nav-text">图像：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript跨域图表"><span class="nav-number">1.</span> <span class="nav-text">javascript跨域图表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态创建script"><span class="nav-number">2.</span> <span class="nav-text">动态创建script</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Jquery中getScript和getJson方法实现跨域"><span class="nav-number">3.</span> <span class="nav-text">使用Jquery中getScript和getJson方法实现跨域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#document-domain-iframe"><span class="nav-number">4.</span> <span class="nav-text">document.domain + iframe</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务端代理"><span class="nav-number">5.</span> <span class="nav-text">服务端代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用HTML-5-postMessage方式"><span class="nav-number">6.</span> <span class="nav-text">使用HTML 5  postMessage方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用flash"><span class="nav-number">7.</span> <span class="nav-text">使用flash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人小结"><span class="nav-number">8.</span> <span class="nav-text">个人小结</span></a></li></ol></div>
             
 
           </div>
@@ -680,7 +676,7 @@ content
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">3.4k</span>
+    <span title="Site words total count">4.8k</span>
   
 </div>
 
@@ -1185,102 +1181,6 @@ content
   
 
   
-  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
-  
-  <script>
-    (function () {
-
-      firebase.initializeApp({
-        apiKey: '',
-        projectId: ''
-      })
-
-      function getCount(doc, increaseCount) {
-        //increaseCount will be false when not in article page
-
-        return doc.get().then(function (d) {
-          var count
-          if (!d.exists) { //has no data, initialize count
-            if (increaseCount) {
-              doc.set({
-                count: 1
-              })
-              count = 1
-            }
-            else {
-              count = 0
-            }
-          }
-          else { //has data
-            count = d.data().count
-            if (increaseCount) {
-              if (!(window.localStorage && window.localStorage.getItem(title))) { //if first view this article
-                doc.set({ //increase count
-                  count: count + 1
-                })
-                count++
-              }
-            }
-          }
-          if (window.localStorage && increaseCount) { //mark as visited
-            localStorage.setItem(title, true)
-          }
-
-          return count
-        })
-      }
-
-      function appendCountTo(el) {
-        return function (count) {
-          $(el).append(
-            $('<span>').addClass('post-visitors-count').append(
-              $('<span>').addClass('post-meta-divider').text('|')
-            ).append(
-              $('<span>').addClass('post-meta-item-icon').append(
-                $('<i>').addClass('fa fa-users')
-              )
-              ).append($('<span>').text('阅读次数 ' + count))
-          )
-        }
-      }
-
-      var db = firebase.firestore()
-      var articles = db.collection('articles')
-
-      //https://hexo.io/zh-tw/docs/variables.html
-      var isPost = 'Hexo模板标签测试案例'.length > 0
-      var isArchive = '' === 'true'
-      var isCategory = ''.length > 0
-      var isTag = ''.length > 0
-
-      if (isPost) { //is article page
-        var title = 'Hexo模板标签测试案例'
-        var doc = articles.doc(title)
-
-        getCount(doc, true).then(appendCountTo($('.post-meta')))
-      }
-      else if (!isArchive && !isCategory && !isTag) { //is index page
-        var titles = [] //array to titles
-
-        var postsstr = '' //if you have a better way to get titles of posts, please change it
-        eval(postsstr)
-
-        var promises = titles.map(function (title) {
-          return articles.doc(title)
-        }).map(function (doc) {
-          return getCount(doc)
-        })
-        Promise.all(promises).then(function (counts) {
-          var metas = $('.post-meta')
-          counts.forEach(function (val, idx) {
-            appendCountTo(metas[idx])(val)
-          })
-        })
-      }
-    })()
-  </script>
-
 
   
 
