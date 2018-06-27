@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://zhangbing.name/images/20180423/2018-04-23-01.jpg">
 <meta property="og:image" content="http://zhangbing.name/images/20180423/2018-04-23-02.jpeg">
-<meta property="og:updated_time" content="2018-06-27T02:41:42.447Z">
+<meta property="og:updated_time" content="2018-06-27T04:00:50.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript跨域">
 <meta name="twitter:description" content="最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。 Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和ifram">
@@ -439,16 +439,16 @@
 <p>Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和iframe应用中，使用跨域的web service会成为一个问题。</p>
 <h1 id="javascript跨域图表"><a href="#javascript跨域图表" class="headerlink" title="javascript跨域图表"></a>javascript跨域图表</h1><p>那到底什么是跨域，简单地理解就是因为JavaScript同源策略的限制，a.com 域名下的js无法操作b.com或是c.a.com域名下的对象。更详细的说明可以看下表：</p>
 <p><img src="/images/20180423/2018-04-23-01.jpg" alt="跨域图表"></p>
-<p> 特别注意两点：</p>
+<p>特别注意两点：</p>
 <ul>
 <li>第一，如果是协议和端口造成的跨域问题“前台”是无能为力的，</li>
-<li><p>第二：在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。<br>   “URL的首部”指window.location.protocol +window.location.host，也可以理解为“Domains, protocols and ports must match”（本段来自网络，个人觉得这段对js跨域描述得在清晰不过了）。</p>
+<li>第二：在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。</li>
+</ul>
+<p>“URL的首部”指window.location.protocol +window.location.host，也可以理解为“Domains, protocols and ports must match”（本段来自网络，个人觉得这段对js跨域描述得在清晰不过了）。</p>
 <p>跨域请求无处不在，平时我们在开发活动过程中，活动静态页面通过Javascript访问前端CGI就是明显的主域相同，子域不同的跨域例子，一般活动静态页面都是类似这样的(http://业务名.xx.com/act/活动目录/xxx.html)，前端CGI 是这样的(<a href="http://www.xx.com/act/活动目录/xxx.cgi)" target="_blank" rel="noopener">http://www.xx.com/act/活动目录/xxx.cgi)</a>, 下面来看看我们都是如何处理跨域请求的：</p>
 <h1 id="动态创建script"><a href="#动态创建script" class="headerlink" title="动态创建script"></a>动态创建script</h1><p>虽然浏览器默认禁止了跨域访问，但并不禁止在页面中引用其他域的JS文件，script标签的src属性引用指向接收方的一个处理地址（后台），该地址返回的javascript方法会被执行，另外URL中可以传入一些参数，该方法只支持GET方式提交参数。我们常用FloadJS方法用的就是这种跨域方式。</p>
 <p><img src="/images/20180423/2018-04-23-02.jpeg" alt="alt text"></p>
 <h1 id="使用Jquery中getScript和getJson方法实现跨域"><a href="#使用Jquery中getScript和getJson方法实现跨域" class="headerlink" title="使用Jquery中getScript和getJson方法实现跨域"></a>使用Jquery中getScript和getJson方法实现跨域</h1><p>Jquery 的getScript 和 getJson方法都可以调用跨域的js或服务端脚本，但是它们的实现原理不一样。</p>
-</li>
-</ul>
 <ol>
 <li>getScript 方法<br>语法：jQuery.getScript(url,success(response,status))<br>该函数是简写的 Ajax 函数，等价于：<br> $.ajax({<br>   Type: get,<br>   url: url,<br>   dataType: “script”,<br>   success: success<br> });<br>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。</li>
 </ol>
@@ -604,7 +604,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -615,7 +615,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -626,7 +626,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -721,7 +721,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.4k</span>
+    <span title="Site words total count">8.8k</span>
   
 </div>
 

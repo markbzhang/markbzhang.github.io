@@ -307,6 +307,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhangbing.name/Mysql/mysql 切合业务精用语句收集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张炳">
+      <meta itemprop="description" content="web全栈 分析应用 收集工具 读书 适量运动">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="铭牌饼饼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Mysql/mysql 切合业务精用语句收集/" itemprop="url">mysql 切合业务精用语句收集</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T15:13:22+08:00">
+                2018-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  462
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="同一个表，group-by-对不同字段进行不同条件统计"><a href="#同一个表，group-by-对不同字段进行不同条件统计" class="headerlink" title="同一个表，group by 对不同字段进行不同条件统计"></a>同一个表，group by 对不同字段进行不同条件统计</h1><p>例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	self_wechatid,</span><br><span class="line">	count(*) AS total,</span><br><span class="line">	sum(IF(gender = 1, 1, 0)) AS man,</span><br><span class="line">	sum(IF(gender = 2, 1, 0)) AS girl,</span><br><span class="line">	(</span><br><span class="line">		count(*) - sum(IF(gender = 1, 1, 0)) - sum(IF(gender = 2, 1, 0))</span><br><span class="line">	) AS non</span><br><span class="line">FROM</span><br><span class="line">	al_wx_contact</span><br><span class="line">WHERE</span><br><span class="line">	create_time &gt; 1526730791</span><br><span class="line">GROUP BY</span><br><span class="line">	self_wechatid;</span><br></pre></td></tr></table></figure></p>
+<h1 id="同一张表中复制（有主键）"><a href="#同一张表中复制（有主键）" class="headerlink" title="同一张表中复制（有主键）"></a>同一张表中复制（有主键）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表1(字段1,字段2,字段3) select 字段1,字段2,字段3 from 表1 where id=1</span><br></pre></td></tr></table></figure>
+<h1 id="连表（含where条件）更新Update语句"><a href="#连表（含where条件）更新Update语句" class="headerlink" title="连表（含where条件）更新Update语句"></a>连表（含where条件）更新Update语句</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update sumholdtime s,province b set s.province = b.province where s.area_code=b.area_code;</span><br><span class="line">update t_tc_telephone s,t_mobile_number_section b set s.province=b.province,s.city=b.city where s.area_code = b.area_code and s.area_code != &apos;&apos;;</span><br><span class="line">update t_non_tc_telephone s,t_mobile_number_section b set s.province=b.province,s.city=b.city where s.area_code = b.area_code and s.area_code != &apos;&apos;;</span><br></pre></td></tr></table></figure>
+<h1 id="从数据表t1-中把那些id值在数据表t2-里有匹配的记录全删除掉"><a href="#从数据表t1-中把那些id值在数据表t2-里有匹配的记录全删除掉" class="headerlink" title="从数据表t1 中把那些id值在数据表t2 里有匹配的记录全删除掉"></a>从数据表t1 中把那些id值在数据表t2 里有匹配的记录全删除掉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE t1 FROM t1,t2 WHERE t1.id=t2.id  </span><br><span class="line">  或</span><br><span class="line">DELETE  FROM t1 USING t1,t2 WHERE t1.id=t2.id</span><br></pre></td></tr></table></figure>
+<h1 id="从数据表t1里在数据表t2里没有匹配的记录查找出来并删除掉"><a href="#从数据表t1里在数据表t2里没有匹配的记录查找出来并删除掉" class="headerlink" title="从数据表t1里在数据表t2里没有匹配的记录查找出来并删除掉"></a>从数据表t1里在数据表t2里没有匹配的记录查找出来并删除掉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE t1 FROM t1 LEFT JOIN T2 ON t1.id=t2.id WHERE t2.id IS NULL </span><br><span class="line">或</span><br><span class="line">DELETE  FROM t1,USING t1 LEFT JOIN T2 ON t1.id=t2.id WHERE t2.id IS NULL</span><br></pre></td></tr></table></figure>
+<h1 id="从两个表中找出相同记录的数据并把两个表中的数据都删除掉"><a href="#从两个表中找出相同记录的数据并把两个表中的数据都删除掉" class="headerlink" title="从两个表中找出相同记录的数据并把两个表中的数据都删除掉"></a>从两个表中找出相同记录的数据并把两个表中的数据都删除掉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE t1,t2 FROM t1 LEFT JOIN t2 ON t1.id=t2.id WHERE t1.id=25</span><br></pre></td></tr></table></figure>
+<p>注意此处的delete t1,t2 from 中的t1,t2不能是别名<br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete t1,t2 from table_name as t1 left join table2_name as t2 on t1.id=t2.id where table_name.id=25</span><br></pre></td></tr></table></figure></p>
+<p>在数据里面执行是错误的（MYSQL 版本不小于5.0在5.0中是可以的）</p>
+<hr>
+<p><strong>后续持续更新中</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zhangbing.name/面试/WEB开发面试畅谈（3）——内容安全策略CSP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1020,16 +1202,16 @@
 <p>Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和iframe应用中，使用跨域的web service会成为一个问题。</p>
 <h1 id="javascript跨域图表"><a href="#javascript跨域图表" class="headerlink" title="javascript跨域图表"></a>javascript跨域图表</h1><p>那到底什么是跨域，简单地理解就是因为JavaScript同源策略的限制，a.com 域名下的js无法操作b.com或是c.a.com域名下的对象。更详细的说明可以看下表：</p>
 <p><img src="/images/20180423/2018-04-23-01.jpg" alt="跨域图表"></p>
-<p> 特别注意两点：</p>
+<p>特别注意两点：</p>
 <ul>
 <li>第一，如果是协议和端口造成的跨域问题“前台”是无能为力的，</li>
-<li><p>第二：在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。<br>   “URL的首部”指window.location.protocol +window.location.host，也可以理解为“Domains, protocols and ports must match”（本段来自网络，个人觉得这段对js跨域描述得在清晰不过了）。</p>
+<li>第二：在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。</li>
+</ul>
+<p>“URL的首部”指window.location.protocol +window.location.host，也可以理解为“Domains, protocols and ports must match”（本段来自网络，个人觉得这段对js跨域描述得在清晰不过了）。</p>
 <p>跨域请求无处不在，平时我们在开发活动过程中，活动静态页面通过Javascript访问前端CGI就是明显的主域相同，子域不同的跨域例子，一般活动静态页面都是类似这样的(http://业务名.xx.com/act/活动目录/xxx.html)，前端CGI 是这样的(<a href="http://www.xx.com/act/活动目录/xxx.cgi)" target="_blank" rel="noopener">http://www.xx.com/act/活动目录/xxx.cgi)</a>, 下面来看看我们都是如何处理跨域请求的：</p>
 <h1 id="动态创建script"><a href="#动态创建script" class="headerlink" title="动态创建script"></a>动态创建script</h1><p>虽然浏览器默认禁止了跨域访问，但并不禁止在页面中引用其他域的JS文件，script标签的src属性引用指向接收方的一个处理地址（后台），该地址返回的javascript方法会被执行，另外URL中可以传入一些参数，该方法只支持GET方式提交参数。我们常用FloadJS方法用的就是这种跨域方式。</p>
 <p><img src="/images/20180423/2018-04-23-02.jpeg" alt="alt text"></p>
 <h1 id="使用Jquery中getScript和getJson方法实现跨域"><a href="#使用Jquery中getScript和getJson方法实现跨域" class="headerlink" title="使用Jquery中getScript和getJson方法实现跨域"></a>使用Jquery中getScript和getJson方法实现跨域</h1><p>Jquery 的getScript 和 getJson方法都可以调用跨域的js或服务端脚本，但是它们的实现原理不一样。</p>
-</li>
-</ul>
 <ol>
 <li>getScript 方法<br>语法：jQuery.getScript(url,success(response,status))<br>该函数是简写的 Ajax 函数，等价于：<br> $.ajax({<br>   Type: get,<br>   url: url,<br>   dataType: “script”,<br>   success: success<br> });<br>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。</li>
 </ol>
@@ -1303,7 +1485,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1314,7 +1496,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1325,7 +1507,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1404,7 +1586,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.4k</span>
+    <span title="Site words total count">8.8k</span>
   
 </div>
 
