@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="日常开发中，我们经常会提到模块化开发、代码规范等等，但到了以HTML和Javascript为首的WEB开发这里，一切都变了。 无论是HTML还是Javascript都以其松散的结构和宽松的规范极大降低了开发成本，但又同时引入了新的问题：不同的开发人员有着不同的开发习惯，当然这些习惯也有好有坏，大多数程序员只是坚持着”能运行就可以“的思想观念，而这些并不利于项目的长期发展。于WEB开发中松散的特性，">
+<meta name="description" content="什么是CSP？CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。更多关于CSP的介绍可以参考">
 <meta name="keywords" content="开发面谈,面试,Web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WEB开发面试畅谈（1）——Javascript封闭性设计">
-<meta property="og:url" content="http://zhangbing.name/WEB开发面试畅谈（1）——Javascript封闭性设计/index.html">
+<meta property="og:title" content="WEB开发面试畅谈（2）——内容安全策略CSP">
+<meta property="og:url" content="http://zhangbing.name/面试/WEB开发面试畅谈（2）——内容安全策略CSP/index.html">
 <meta property="og:site_name" content="铭牌饼饼">
-<meta property="og:description" content="日常开发中，我们经常会提到模块化开发、代码规范等等，但到了以HTML和Javascript为首的WEB开发这里，一切都变了。 无论是HTML还是Javascript都以其松散的结构和宽松的规范极大降低了开发成本，但又同时引入了新的问题：不同的开发人员有着不同的开发习惯，当然这些习惯也有好有坏，大多数程序员只是坚持着”能运行就可以“的思想观念，而这些并不利于项目的长期发展。于WEB开发中松散的特性，">
+<meta property="og:description" content="什么是CSP？CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。更多关于CSP的介绍可以参考">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-22T03:25:21.681Z">
+<meta property="og:updated_time" content="2018-06-27T02:43:48.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WEB开发面试畅谈（1）——Javascript封闭性设计">
-<meta name="twitter:description" content="日常开发中，我们经常会提到模块化开发、代码规范等等，但到了以HTML和Javascript为首的WEB开发这里，一切都变了。 无论是HTML还是Javascript都以其松散的结构和宽松的规范极大降低了开发成本，但又同时引入了新的问题：不同的开发人员有着不同的开发习惯，当然这些习惯也有好有坏，大多数程序员只是坚持着”能运行就可以“的思想观念，而这些并不利于项目的长期发展。于WEB开发中松散的特性，">
+<meta name="twitter:title" content="WEB开发面试畅谈（2）——内容安全策略CSP">
+<meta name="twitter:description" content="什么是CSP？CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。更多关于CSP的介绍可以参考">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://zhangbing.name/WEB开发面试畅谈（1）——Javascript封闭性设计/"/>
+  <link rel="canonical" href="http://zhangbing.name/面试/WEB开发面试畅谈（2）——内容安全策略CSP/"/>
 
 
 
 
 
-  <title>WEB开发面试畅谈（1）——Javascript封闭性设计 | 铭牌饼饼</title>
+  <title>WEB开发面试畅谈（2）——内容安全策略CSP | 铭牌饼饼</title>
   
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangbing.name/WEB开发面试畅谈（1）——Javascript封闭性设计/">
+    <link itemprop="mainEntityOfPage" href="http://zhangbing.name/面试/WEB开发面试畅谈（2）——内容安全策略CSP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张炳">
@@ -324,7 +324,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">WEB开发面试畅谈（1）——Javascript封闭性设计</h2>
+          <h2 class="post-title" itemprop="name headline">WEB开发面试畅谈（2）——内容安全策略CSP</h2>
         
 
         <div class="post-meta">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T22:12:42+08:00">
-                2018-05-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T23:05:58+08:00">
+                2018-06-03
               </time>
             
 
@@ -395,7 +395,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,435
+                  1,621
                 </span>
               
 
@@ -411,7 +411,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  7
                 </span>
               
             </div>
@@ -432,22 +432,26 @@
       
 
       
-        <p>日常开发中，我们经常会提到模块化开发、代码规范等等，但到了以HTML和Javascript为首的WEB开发这里，一切都变了。</p>
-<p>无论是HTML还是Javascript都以其松散的结构和宽松的规范极大降低了开发成本，但又同时引入了新的问题：不同的开发人员有着不同的开发习惯，当然这些习惯也有好有坏，大多数程序员只是坚持着”能运行就可以“的思想观念，而这些并不利于项目的长期发展。于WEB开发中松散的特性，许多思路和经验并不是语言层面约束的，而是通过特有的代码逻辑和结构加以维护。所以在观看下文时，请勿在评论中发表类似如下的评论：”搞那么复杂干嘛？直接var一个变量去改不就好了，干嘛用闭包，我自己写的代码自己清楚，我用人格担保我的调用正确“，扯远了，如果你认同我上面的大体思想，请继续往下看。</p>
-<p>大多数开发人员在第一次开发WEB时，一定写过类似如下的代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var b = 2;</span><br><span class="line">alert(a+b);</span><br></pre></td></tr></table></figure></p>
-<p>我们欢呼着把脚步踏入了JS开发行列，并且意识到JS的强大，简单堆叠代码就能实现功能。但时到如今回头看这段代码，确实问题重重。<br>提到此，我们已经不是关注功能实现的问题，而是设计的问题。功能是个人都能实现，但设计确实良莠不齐因人而异。<br>以上述代码为例，我们仅仅需要实现alert(a+b)却同时生硬的在全局书写了两个全局变量a、b。而在其余地方这两个变量均无用。<br>倘若另一段代码也没做封闭处理，也用全局a、b，很容易引发冲突问题，而且不是异常，难于定位。<br>实现封闭，最简单的方式是定义闭包，闭包简而言之就是构造一个匿名函数并且立刻执行它。我们会得到执行结果，却不会将局部变量暴露给外层或全局。</p>
-<p>优化后的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var a = 1;</span><br><span class="line"> var b = 2;</span><br><span class="line"> alert(a+b);</span><br><span class="line">&#125;)(); </span><br></pre></td></tr></table></figure></p>
-<p>简单构造的闭包语法，可以很方便地将非闭包语法加以封闭，在调试阶段，确保变量不冲突的前提下，可将首尾行注释，方便在Chrome等开发工具中调试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//(function() &#123;</span><br><span class="line"> var a = 1;</span><br><span class="line"> var b = 2;</span><br><span class="line"> alert(a+b);</span><br><span class="line">//&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>封闭性是一个良好代码设计的开始，闭包内的变量默认是私有<br>（这里不考虑不用var声明的全局变量，参照JS代码规范）。<br>我们可以选择性地在闭包的结尾将公开成员公开出去。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"> window.getPageOpenTime = getPageOpenTime;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>但也不是教条主义。比如我们要定义一组API，其实可以这么实现<br>但按照前面的规范，getNow()与getPageOpenTime()是互相独立的，而且getNow()中理应无法调用pageOpenTime。代码该写成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"> window.getPageOpenTime = getPageOpenTime;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">(function()&#123;</span><br><span class="line"> function getNow() &#123;</span><br><span class="line"> return new Date();</span><br><span class="line"> &#125;</span><br><span class="line"> window.getNow = getNow;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>那么恭喜你，你已经犯了教条主义。也就是过度设计。我们实现的API内部是几乎不可能被外界干预的。<br>没必要设过于复杂的限制约束，不论复杂度还是维护都麻烦。<br>这又是与封闭性互为反面的，如何权衡呢？<br>我们只需要保证对外公开的接口严格准确，内部是可以更灵活一些的。即便丧失了局部封闭性，但对外接口还是封闭的。而且也更加灵活。</p>
-<p>那么我们最终实现的代码如下即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"> function getNow() &#123;</span><br><span class="line"> return new Date();</span><br><span class="line"> &#125;</span><br><span class="line"> window.getPageOpenTime = getPageOpenTime;</span><br><span class="line"> window.getNow = getNow;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>再深入思考一下，我们把一坨函数直接暴露给window真的好么？倘若我们有100个函数，不敢想象。。<br>我们需要做一个包装对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"> function getNow() &#123;</span><br><span class="line"> return new Date();</span><br><span class="line"> &#125;</span><br><span class="line"> var TimeTools = &#123;</span><br><span class="line"> getPageOpenTime: getPageOpenTime,</span><br><span class="line"> getNow: getNow</span><br><span class="line"> &#125;;</span><br><span class="line"> window.TimeTools = TimeTools</span><br><span class="line">&#125;)(); </span><br></pre></td></tr></table></figure></p>
-<p>这样就保证全局只有唯一一个暴露对象了。</p>
-<p>那我们继续深入，万一有另外一个人也蛋疼的起了个叫TimeTools的全局变量，咋办？？？继续冲突中<br>我想说，非要把人往死路逼么？好吧，那我也拿出看家本领。参见jQuery.noConflict()方法<br>大意就是在赋值全局变量时，先保存之前版本的全局变量，如果冲突，可以调用noConflict()方法回滚全局变量，并且返回私有的工具对象</p>
-<p>//我非要叫TimeTools，你咬我啊</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var TimeTools = &#123;</span><br><span class="line"> abc: 123</span><br><span class="line">&#125;; </span><br><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> function getNow() &#123;</span><br><span class="line"> return new Date();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> var TimeTools = &#123;</span><br><span class="line"> getPageOpenTime: getPageOpenTime,</span><br><span class="line"> getNow: getNow</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> var oldTimeTools = window.TimeTools;</span><br><span class="line"> function noConflict() &#123;</span><br><span class="line"> window.TimeTools = oldTimeTools;</span><br><span class="line"> return TimeTools;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> TimeTools.noConflict = noConflict;</span><br><span class="line"></span><br><span class="line"> window.TimeTools = TimeTools</span><br><span class="line">&#125;)();</span><br><span class="line">//测试代码</span><br><span class="line">(function() &#123;</span><br><span class="line"> var TimeTools = window.TimeTools.noConflict();</span><br><span class="line"></span><br><span class="line"> console.log(TimeTools.getNow()); //我的API</span><br><span class="line"> console.log(window.TimeTools.abc); //原始页面上的全局变量</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<p>通过如上层层深入的设计，我们可以保持js代码的封闭性，在开发底层库或者中间件的过程中，可以大大降低冲突的风险，更便于调试。</p>
+        <h1 id="什么是CSP？"><a href="#什么是CSP？" class="headerlink" title="什么是CSP？"></a>什么是CSP？</h1><p>CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。<br>CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。<br>更多关于CSP的介绍可以参考W3C的相关文档： <a href="https://dvcs.w3.org/hg/content-security-policy/raw-file/tip/csp-specification.dev.html#content-security-policy-header-field" target="_blank" rel="noopener">https://dvcs.w3.org/hg/content-security-policy/raw-file/tip/csp-specification.dev.html#content-security-policy-header-field</a><br>一部分中文翻译：CSP - HTML5 Chinese Interest Group Wiki(<a href="https://www.w3.org/html/ig/zh/wiki/CSP" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/CSP</a>)<br>CSP的讨论<br>CSP的出现可以一定程度上的减少XSS的攻击，但不一定意味着XSS的消失。<br>挺久之前过了一遍CSP的安全策略，很多人把它喻为XSS攻击的终结者，因为这种策略不再像传统只靠各种正则和特征匹配来识别跨站攻击Payload，而是直接从协议层把一些存在安全隐患的用法默认给干掉了，把同源同域更发挥到了极致。把之前整理的内容发到这里吧。</p>
+<ol>
+<li>只允许本站资源Content-Security-Policy： default-src‘self’</li>
+<li>允许本站的资源以及任意位置的图片以及<a href="http://trustedscripts.example.com下的脚本。" target="_blank" rel="noopener">http://trustedscripts.example.com下的脚本。</a><br> Content-Security-Policy： default-src ‘self’；img-src *；<br> script-src <a href="http://trustedscripts.example.com" target="_blank" rel="noopener">http://trustedscripts.example.com</a></li>
+<li>CSP策略在默认的情况下是不允许使用data URIs资源的,如果要使用，那么需要显示的指定,比如:img-src ‘self’ data:</li>
+<li>script-src：在处理脚本资源的时候设置”unsafe-inline”可以阻止内联Js代码的执行。使用unsafe-eval开关可以禁止eval,setTimeout,setInterval函数的执行。</li>
+<li>object-src：控制embed,code,archive applet等对象。</li>
+<li>style-src：会控制样式表@import和rel时所引入的URI资源，设置unsafe-inline规则可以是浏览器拒绝解析内部样式和内联样式定义。并不会阻止链入外部样式表。</li>
+<li>img-src：可以控制图片资源的连接，包括img标签的src属性，以及CSS3中的url()和image()方法，以及link标签中的href属性(当rel设置成与图像相关的值，比如HTML支持的icon)</li>
+<li>media-src:控制媒体类型的外部链入资源，如video, audio, source, 和track标签的src属性。</li>
+<li>frame-src:控制内嵌框架包含的外部页面连接：iframe or a frame。</li>
+<li>font-src：控制CSS中的@font-face</li>
+<li>connect-src：控制XMLHttpRequest中的open()，WebSocket，EventSource</li>
+<li>inline script和eval类型函数(包括eval、setInterval、setTimeout和new Function())是不被执行的。另外data URIs也是默认不允许使用的，XBL,只允许通过chrome:和resource:形式uri请求的XBL,其它的比如在CSS中通过-moz-binding来指定的XBL则不允许被执行。</li>
+</ol>
+<p>早期WEB开发的规范并不明确，为了向前兼容性，最新的浏览器仍兼容着最古老而且可能存在风险的语法和接口 。通俗的讲，CSP明确地告诉我们，哪些WEB开发行为对于宽松模式来说是可以使用的，但出于安全问题我们应尽早摒弃。我们不仅要做到实现更能，而且要更好更安全地实现。<br>下面例举个CSP适用的实际场景，大家会一目了然CSP的约束内容</p>
+<h1 id="不执行Inline-JavaScript"><a href="#不执行Inline-JavaScript" class="headerlink" title="不执行Inline JavaScript"></a>不执行Inline JavaScript</h1><p>Inline JavaScript和eval一样危险，将不会被执行。这条规则将同时禁止内嵌&lt; script &gt;块和内联事件（例如： &lt; button onclick=”…” &gt;;&lt; ahref=”javascript:…”&gt;）。<br>这条规则通过禁止第三方脚本避免大量的跨脚本攻击。同时它还强制您编写内容与表现分离的代码（这本就是您该做的，对吧？）。用个例子说明这一点：假设您在一个单独的popup.html文件中实现如下Browser Action弹出页：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;title&gt;My Awesome Popup!&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">function awesome() &#123;</span><br><span class="line"></span><br><span class="line">              // do something awesome!</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">functiontotallyAwesome() &#123;</span><br><span class="line"></span><br><span class="line">              // do something TOTALLY awesome!</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">functionclickHandler(element) &#123;</span><br><span class="line"></span><br><span class="line">setTimeout(&quot;awesome(); totallyAwesome()&quot;, 1000);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;button onclick=&quot;clickHandler(this)&quot;&gt;</span><br><span class="line">            Click for awesomeness!</span><br><span class="line">&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>为了使它能以您所希望的方式运行，结合本规则，需要做以下三个方面的修改：<br>·         clickHandler的定义需移到外部JavaScript文件中（如：popup.js）。<br>·         内联事件需通过addEventListener，并移到外部popup.js文件中实现。<br>·         为了避免使用转换字符串到JavaScript的函数”awesome(); totallyAwesome()”的执行，setTimeout调用需要重写。<br>修改之后将会像下面这样：<br>popup.js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">function awesome() &#123;</span><br><span class="line"></span><br><span class="line">          // Do something awesome!</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">functiontotallyAwesome() &#123;</span><br><span class="line"></span><br><span class="line">          // do something TOTALLY awesome!</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">functionawesomeTask() &#123;</span><br><span class="line"></span><br><span class="line">awesome();</span><br><span class="line"></span><br><span class="line">totallyAwesome();</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">functionclickHandler(e) &#123;</span><br><span class="line"></span><br><span class="line">setTimeout(awesomeTask, 1000);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Add event listeners once the DOM has fully loaded by listening for the</span><br><span class="line"></span><br><span class="line">        // `DOMContentLoaded` event on the document, and adding your listeners to</span><br><span class="line"></span><br><span class="line">        // specific elements when it triggers.</span><br><span class="line"></span><br><span class="line">document.addEventListener(&apos;DOMContentLoaded&apos;, function () &#123;</span><br><span class="line"></span><br><span class="line">document.querySelector(&apos;button&apos;).addEventListener(&apos;click&apos;, clickHandler);</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line">  popup.html:</span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;title&gt;My Awesome Popup!&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;popup.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;button&gt;Click for awesomeness!&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="综述："><a href="#综述：" class="headerlink" title="综述："></a>综述：</h1><p>首先CSP是可以在一定程度上提高XSS的攻击难度的，甚至杜绝XSS，前提是CSP策略用的好。还要考虑CSP能否普及，因为CSP在提供安全性的同时也提高了前端逻辑的复杂度，很多资源需要调整，类似QQ，新浪，搜狐这样的站群，想通过合适的CSP同时提高安全性和易用性是很难的。但是我们仍要尽可能使用更加规范的编码方式提高WEB开发的质量</p>
+<p>目前CSP规范并未应用于全部浏览器，仅仅新浏览器会得到支持。但是遵循CSP规范开发的WEB应用将获得更好的代码结构和用户体验，大大提高安全性。这可能会彻底改变你之前的开发习惯和方式。甚至你会恍然发现，之前的代码是如此脆弱不堪。甚至会有些不适。但是，时代总是向前发展的。当你渐渐习惯并接受了它，才发现它带来的无尽好处，助你在web开发的道路上走得更快更好。</p>
 
       
     </div>
@@ -468,7 +472,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://zhangbing.name/WEB开发面试畅谈（1）——Javascript封闭性设计/" title="WEB开发面试畅谈（1）——Javascript封闭性设计">http://zhangbing.name/WEB开发面试畅谈（1）——Javascript封闭性设计/</a>
+    <a href="http://zhangbing.name/面试/WEB开发面试畅谈（2）——内容安全策略CSP/" title="WEB开发面试畅谈（2）——内容安全策略CSP">http://zhangbing.name/面试/WEB开发面试畅谈（2）——内容安全策略CSP/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -500,8 +504,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/javascript跨域那些事/" rel="next" title="javascript跨域">
-                <i class="fa fa-chevron-left"></i> javascript跨域
+              <a href="/面试/WEB开发面试畅谈（1）——Javascript封闭性设计/" rel="next" title="WEB开发面试畅谈（1）——Javascript封闭性设计">
+                <i class="fa fa-chevron-left"></i> WEB开发面试畅谈（1）——Javascript封闭性设计
               </a>
             
           </div>
@@ -510,8 +514,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/WEB开发面试畅谈（2）——内容安全策略CSP/" rel="prev" title="WEB开发面试畅谈（2）——内容安全策略CSP">
-                WEB开发面试畅谈（2）——内容安全策略CSP <i class="fa fa-chevron-right"></i>
+              <a href="/面试/WEB开发面试畅谈（3）——内容安全策略CSP/" rel="prev" title="WEB开发面试畅谈（3）——内容安全策略CSP">
+                WEB开发面试畅谈（3）——内容安全策略CSP <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -566,8 +570,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -659,6 +672,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是CSP？"><span class="nav-number">1.</span> <span class="nav-text">什么是CSP？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不执行Inline-JavaScript"><span class="nav-number">2.</span> <span class="nav-text">不执行Inline JavaScript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#综述："><span class="nav-number">3.</span> <span class="nav-text">综述：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
