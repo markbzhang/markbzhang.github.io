@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="同一个表，group by 对不同字段进行不同条件统计例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。1234567891011121314SELECT	self_wechatid,	count(*) AS total,	sum(IF(gender = 1, 1, 0))">
+<meta name="description" content="同一个表，group by 对不同字段进行不同条件统计例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。1234567891011121314151617181920212223242526272829303132SELECT	self_wechatid,	count(*)">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql 切合业务精用语句收集">
 <meta property="og:url" content="http://zhangbing.name/Mysql/mysql 切合业务精用语句收集/index.html">
 <meta property="og:site_name" content="铭牌饼饼">
-<meta property="og:description" content="同一个表，group by 对不同字段进行不同条件统计例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。1234567891011121314SELECT	self_wechatid,	count(*) AS total,	sum(IF(gender = 1, 1, 0))">
+<meta property="og:description" content="同一个表，group by 对不同字段进行不同条件统计例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。1234567891011121314151617181920212223242526272829303132SELECT	self_wechatid,	count(*)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-27T10:20:40.662Z">
+<meta property="og:updated_time" content="2018-06-28T02:15:36.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 切合业务精用语句收集">
-<meta name="twitter:description" content="同一个表，group by 对不同字段进行不同条件统计例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。1234567891011121314SELECT	self_wechatid,	count(*) AS total,	sum(IF(gender = 1, 1, 0))">
+<meta name="twitter:description" content="同一个表，group by 对不同字段进行不同条件统计例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。1234567891011121314151617181920212223242526272829303132SELECT	self_wechatid,	count(*)">
 
 
 
@@ -395,7 +395,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  462
+                  560
                 </span>
               
 
@@ -411,7 +411,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -432,7 +432,7 @@
       
 
       
-        <h1 id="同一个表，group-by-对不同字段进行不同条件统计"><a href="#同一个表，group-by-对不同字段进行不同条件统计" class="headerlink" title="同一个表，group by 对不同字段进行不同条件统计"></a>同一个表，group by 对不同字段进行不同条件统计</h1><p>例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	self_wechatid,</span><br><span class="line">	count(*) AS total,</span><br><span class="line">	sum(IF(gender = 1, 1, 0)) AS man,</span><br><span class="line">	sum(IF(gender = 2, 1, 0)) AS girl,</span><br><span class="line">	(</span><br><span class="line">		count(*) - sum(IF(gender = 1, 1, 0)) - sum(IF(gender = 2, 1, 0))</span><br><span class="line">	) AS non</span><br><span class="line">FROM</span><br><span class="line">	al_wx_contact</span><br><span class="line">WHERE</span><br><span class="line">	create_time &gt; 1526730791</span><br><span class="line">GROUP BY</span><br><span class="line">	self_wechatid;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="同一个表，group-by-对不同字段进行不同条件统计"><a href="#同一个表，group-by-对不同字段进行不同条件统计" class="headerlink" title="同一个表，group by 对不同字段进行不同条件统计"></a>同一个表，group by 对不同字段进行不同条件统计</h1><p>例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	self_wechatid,</span><br><span class="line">	count(*) AS total,</span><br><span class="line">	sum(IF(gender = 1, 1, 0)) AS man,</span><br><span class="line">	sum(IF(gender = 2, 1, 0)) AS girl,</span><br><span class="line">	(</span><br><span class="line">		count(*) - sum(IF(gender = 1, 1, 0)) - sum(IF(gender = 2, 1, 0))</span><br><span class="line">	) AS non</span><br><span class="line">FROM</span><br><span class="line">	al_wx_contact</span><br><span class="line">WHERE</span><br><span class="line">	create_time &gt; 1526730791</span><br><span class="line">GROUP BY</span><br><span class="line">	self_wechatid;</span><br><span class="line">	</span><br><span class="line">/*延伸拓展*/</span><br><span class="line">SELECT</span><br><span class="line">	b.uid,</span><br><span class="line">	u.username,</span><br><span class="line">	count(*) AS total,</span><br><span class="line">	sum(IF(c.gender = 1, 1, 0)) AS man,</span><br><span class="line">	sum(IF(c.gender = 2, 1, 0)) AS girl,</span><br><span class="line">	(</span><br><span class="line">		count(*) - sum(IF(c.gender = 1, 1, 0)) - sum(IF(c.gender = 2, 1, 0))</span><br><span class="line">	) AS non</span><br><span class="line">FROM</span><br><span class="line">	al_wx_contact c left join al_wx_weixin_base b on c.self_wechatid = b.self_wechatid left join al_users u on b.uid = u.uid</span><br><span class="line">WHERE</span><br><span class="line">	c.create_time &gt; 0</span><br><span class="line">GROUP BY</span><br><span class="line">	b.uid</span><br><span class="line">ORDER BY total desc;</span><br></pre></td></tr></table></figure></p>
 <h1 id="同一张表中复制（有主键）"><a href="#同一张表中复制（有主键）" class="headerlink" title="同一张表中复制（有主键）"></a>同一张表中复制（有主键）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表1(字段1,字段2,字段3) select 字段1,字段2,字段3 from 表1 where id=1</span><br></pre></td></tr></table></figure>
 <h1 id="连表（含where条件）更新Update语句"><a href="#连表（含where条件）更新Update语句" class="headerlink" title="连表（含where条件）更新Update语句"></a>连表（含where条件）更新Update语句</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update sumholdtime s,province b set s.province = b.province where s.area_code=b.area_code;</span><br><span class="line">update t_tc_telephone s,t_mobile_number_section b set s.province=b.province,s.city=b.city where s.area_code = b.area_code and s.area_code != &apos;&apos;;</span><br><span class="line">update t_non_tc_telephone s,t_mobile_number_section b set s.province=b.province,s.city=b.city where s.area_code = b.area_code and s.area_code != &apos;&apos;;</span><br></pre></td></tr></table></figure>
 <h1 id="从数据表t1-中把那些id值在数据表t2-里有匹配的记录全删除掉"><a href="#从数据表t1-中把那些id值在数据表t2-里有匹配的记录全删除掉" class="headerlink" title="从数据表t1 中把那些id值在数据表t2 里有匹配的记录全删除掉"></a>从数据表t1 中把那些id值在数据表t2 里有匹配的记录全删除掉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE t1 FROM t1,t2 WHERE t1.id=t2.id  </span><br><span class="line">  或</span><br><span class="line">DELETE  FROM t1 USING t1,t2 WHERE t1.id=t2.id</span><br></pre></td></tr></table></figure>
@@ -499,6 +499,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/面试/WEB开发面面谈之（5）——写JS时必须注意的的一些问题/" rel="prev" title="WEB开发面面谈之（5）——写JS时必须注意的的一些问题">
+                WEB开发面面谈之（5）——写JS时必须注意的的一些问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -581,7 +585,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -698,7 +702,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.8k</span>
+    <span title="Site words total count">10.9k</span>
   
 </div>
 
@@ -708,6 +712,8 @@
 
 
 
+
+  <div class="footer-custom"><a target="_blank" href="http://jlw3.cn/index.php?id=421902143">人生助力，程序员惰性赚钱，尝试个真伪！点我！点我！</a></div>
 
 
         
