@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="跨域," />
+  <meta name="keywords" content="异步," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。 Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和ifram">
-<meta name="keywords" content="跨域">
+<meta name="description" content="Javascript 语言的执行环境是“单线程”的，如果没有异步编程，根本没法用，非卡死不可。 为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）两种模式概念很好理解。 ES6 诞生以前，异步编程的方法，大概有下面四种：回调函数 ，事件监听 ，发布/订阅 ，Promise对象。 回调函数这是异步编程最基本的方法。 假">
+<meta name="keywords" content="异步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript跨域">
-<meta property="og:url" content="http://zhangbing.name/Javascript/javascript跨域/index.html">
+<meta property="og:title" content="谈谈ES6前后的异步编程">
+<meta property="og:url" content="http://zhangbing.name/Javascript/谈谈ES6前后的异步编程/index.html">
 <meta property="og:site_name" content="铭牌饼饼">
-<meta property="og:description" content="最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。 Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和ifram">
+<meta property="og:description" content="Javascript 语言的执行环境是“单线程”的，如果没有异步编程，根本没法用，非卡死不可。 为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）两种模式概念很好理解。 ES6 诞生以前，异步编程的方法，大概有下面四种：回调函数 ，事件监听 ，发布/订阅 ，Promise对象。 回调函数这是异步编程最基本的方法。 假">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://zhangbing.name/images/20180423/2018-04-23-01.jpg">
-<meta property="og:image" content="http://zhangbing.name/images/20180423/2018-04-23-02.jpeg">
-<meta property="og:updated_time" content="2018-06-27T04:00:50.809Z">
+<meta property="og:updated_time" content="2018-07-01T06:03:56.047Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript跨域">
-<meta name="twitter:description" content="最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。 Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和ifram">
-<meta name="twitter:image" content="http://zhangbing.name/images/20180423/2018-04-23-01.jpg">
+<meta name="twitter:title" content="谈谈ES6前后的异步编程">
+<meta name="twitter:description" content="Javascript 语言的执行环境是“单线程”的，如果没有异步编程，根本没法用，非卡死不可。 为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）两种模式概念很好理解。 ES6 诞生以前，异步编程的方法，大概有下面四种：回调函数 ，事件监听 ，发布/订阅 ，Promise对象。 回调函数这是异步编程最基本的方法。 假">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://zhangbing.name/Javascript/javascript跨域/"/>
+  <link rel="canonical" href="http://zhangbing.name/Javascript/谈谈ES6前后的异步编程/"/>
 
 
 
 
 
-  <title>javascript跨域 | 铭牌饼饼</title>
+  <title>谈谈ES6前后的异步编程 | 铭牌饼饼</title>
   
 
 
@@ -310,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangbing.name/Javascript/javascript跨域/">
+    <link itemprop="mainEntityOfPage" href="http://zhangbing.name/Javascript/谈谈ES6前后的异步编程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张炳">
@@ -327,7 +324,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">javascript跨域</h2>
+          <h2 class="post-title" itemprop="name headline">谈谈ES6前后的异步编程</h2>
         
 
         <div class="post-meta">
@@ -339,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T10:02:20+08:00">
-                2018-04-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T22:54:02+08:00">
+                2018-05-04
               </time>
             
 
@@ -398,7 +395,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,788
+                  2,374
                 </span>
               
 
@@ -414,7 +411,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  9
                 </span>
               
             </div>
@@ -435,32 +432,88 @@
       
 
       
-        <p>最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。</p>
-<p>Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和iframe应用中，使用跨域的web service会成为一个问题。</p>
-<h1 id="javascript跨域图表"><a href="#javascript跨域图表" class="headerlink" title="javascript跨域图表"></a>javascript跨域图表</h1><p>那到底什么是跨域，简单地理解就是因为JavaScript同源策略的限制，a.com 域名下的js无法操作b.com或是c.a.com域名下的对象。更详细的说明可以看下表：</p>
-<p><img src="/images/20180423/2018-04-23-01.jpg" alt="跨域图表"></p>
-<p>特别注意两点：</p>
+        <p>Javascript 语言的执行环境是“单线程”的，如果没有异步编程，根本没法用，非卡死不可。</p>
+<p>为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）两种模式概念很好理解。</p>
+<p>ES6 诞生以前，异步编程的方法，大概有下面四种：回调函数 ，事件监听 ，发布/订阅 ，Promise对象。</p>
+<h1 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h1><p>这是异步编程最基本的方法。</p>
+<p>假定有两个函数f1和f2，后者等待前者的执行结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　f1();</span><br><span class="line">　　f2();</span><br></pre></td></tr></table></figure>
+<p>如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　function f1(callback)&#123;</span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line">　　　　　　// f1的任务代码</span><br><span class="line">　　　　　　callback();</span><br><span class="line">　　　　&#125;, 1000);</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<p>执行代码就变成下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1(f2);</span><br></pre></td></tr></table></figure>
+<p>采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
+<p>回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。</p>
+<h1 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h1><p>另一种思路是采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。</p>
+<p>还是以f1和f2为例。首先，为f1绑定一个事件（这里采用的jQuery的写法）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1.on(&apos;done&apos;, f2);</span><br></pre></td></tr></table></figure>
+<p>上面这行代码的意思是，当f1发生done事件，就执行f2。然后，对f1进行改写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　function f1()&#123;</span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line">　　　　　　// f1的任务代码</span><br><span class="line">　　　　　　f1.trigger(&apos;done&apos;);</span><br><span class="line">　　　　&#125;, 1000);</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<p>f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而开始执行f2。</p>
+<p>这种方法的优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以”去耦合”（Decoupling），有利于实现模块化。缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。</p>
+<h1 id="发布-订阅"><a href="#发布-订阅" class="headerlink" title="发布/订阅"></a>发布/订阅</h1><p>上一节的”事件”，完全可以理解成”信号”。</p>
+<p>我们假定，存在一个”信号中心”，某个任务执行完成，就向信号中心”发布”（publish）一个信号，其他任务可以向信号中心”订阅”（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做”发布/订阅模式”（publish-subscribe pattern），又称”观察者模式”（observer pattern）。</p>
+<p>这个模式有多种实现，下面采用的是Ben Alman的Tiny Pub/Sub，这是jQuery的一个插件。</p>
+<p>首先，f2向”信号中心”jQuery订阅”done”信号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery.subscribe(&quot;done&quot;, f2);</span><br></pre></td></tr></table></figure>
+<p>然后，f1进行如下改写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　function f1()&#123;</span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line">　　　　　　// f1的任务代码</span><br><span class="line">　　　　　　jQuery.publish(&quot;done&quot;);</span><br><span class="line">　　　　&#125;, 1000);</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<p>jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心”jQuery发布”done”信号，从而引发f2的执行。</p>
+<p>此外，f2完成执行后，也可以取消订阅（unsubscribe）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery.unsubscribe(&quot;done&quot;, f2);</span><br></pre></td></tr></table></figure>
+<p>这种方法的性质与”事件监听”类似，但是明显优于后者。因为我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。</p>
+<h1 id="Promises对象"><a href="#Promises对象" class="headerlink" title="Promises对象"></a>Promises对象</h1><p>Promises对象是CommonJS工作组提出的一种规范，目的是为异步编程提供统一接口。</p>
+<p>简单说，它的思想是，每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1().then(f2);</span><br></pre></td></tr></table></figure>
+<p>f1要进行如下改写（这里使用的是jQuery的实现）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">　　function f1()&#123;</span><br><span class="line">　　　　var dfd = $.Deferred();</span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line">　　　　　　// f1的任务代码</span><br><span class="line">　　　　　　dfd.resolve();</span><br><span class="line">　　　　&#125;, 500);</span><br><span class="line">　　　　return dfd.promise;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。</p>
+<p>比如，指定多个回调函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1().then(f2).then(f3);</span><br></pre></td></tr></table></figure>
+<p>再比如，指定发生错误时的回调函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1().then(f2).fail(f3);</span><br></pre></td></tr></table></figure>
+<p>而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。</p>
+<hr>
+<p>ES6诞生后，出现了Generator函数，它将 JavaScript 异步编程带入了一个全新的阶段。ES6也将Promise 其写进了语言标准，统一了用法，原生提供了Promise对象。</p>
+<p>故ES6异步编程的方法，大概有两种：Generator函数，Promise。</p>
+<h1 id="Generator函数"><a href="#Generator函数" class="headerlink" title="Generator函数"></a>Generator函数</h1><p>特点： 带星号function，yield语句 ，next() 获取下一个yield表达式中yield后的值，拥有遍历器接口，与for..of可搭配使用</p>
+<p>下面代码中，Generator函数封装了一个异步操作，该操作先读取一个远程接口，然后从JSON格式的数据解析信息。这段代码非常像同步操作，除了加上了yield命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var fetch = require(&apos;node-fetch&apos;);</span><br><span class="line"></span><br><span class="line">function * gen() &#123;</span><br><span class="line">    var url = &apos;http://api.github.com/users/github&apos;;</span><br><span class="line">    var result = yield fetch(url);</span><br><span class="line">    console.log(result.bio);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var g = gen();</span><br><span class="line">var result = g.next();</span><br><span class="line"></span><br><span class="line">result.value.then(function(data) &#123;</span><br><span class="line">    return data.json();</span><br><span class="line">&#125;).then(function (data) &#123;</span><br><span class="line">    g.next(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><em>执行过程:</em></p>
+<p>首先执行Generator函数，获取遍历器对象，然后使用next 方法（第二行），执行异步任务的第一阶段。由于Fetch模块返回的是一个Promise对象，因此要用then方法调用下一个next 方法。</p>
+<p><em>缺点：</em></p>
+<p>可以看到，虽然Generator函数将异步操作表示得很简洁，但是流程管理却不方便（即何时执行第一阶段、何时执行第二阶段），即如何实现自动化的流程管理。</p>
+<p><em>补充拓展</em></p>
+<p>可以参考阮一峰的<a href="http://es6.ruanyifeng.com/#docs/generator-async" target="_blank" rel="noopener">ECMAScript 6 入门</a>用Thunk函数实现自动化流程管理,对Generator函数进行拓展，前提是每一个异步操作，都要是Thunk函数,进价就是再用CO模块来实现自动化流程管理，co模块其实就是将两种自动执行器（Thunk 函数和 Promise 对象），包装成一个模块。使用 co 的前提条件是，Generator 函数的yield命令后面，只能是 Thunk 函数或 Promise 对象。如果数组或对象的成员，全部都是 Promise 对象，也可以使用 co。后面，ES2017标准引入了async函数，对Generator再“语法升级”， async 函数是什么？一句话，它就是 Generator 函数的语法糖。async函数对 Generator 函数进行了改进，体现在以下四点：</p>
 <ul>
-<li>第一，如果是协议和端口造成的跨域问题“前台”是无能为力的，</li>
-<li>第二：在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。</li>
+<li>内置执行器。</li>
 </ul>
-<p>“URL的首部”指window.location.protocol +window.location.host，也可以理解为“Domains, protocols and ports must match”（本段来自网络，个人觉得这段对js跨域描述得在清晰不过了）。</p>
-<p>跨域请求无处不在，平时我们在开发活动过程中，活动静态页面通过Javascript访问前端CGI就是明显的主域相同，子域不同的跨域例子，一般活动静态页面都是类似这样的(http://业务名.xx.com/act/活动目录/xxx.html)，前端CGI 是这样的(<a href="http://www.xx.com/act/活动目录/xxx.cgi)" target="_blank" rel="noopener">http://www.xx.com/act/活动目录/xxx.cgi)</a>, 下面来看看我们都是如何处理跨域请求的：</p>
-<h1 id="动态创建script"><a href="#动态创建script" class="headerlink" title="动态创建script"></a>动态创建script</h1><p>虽然浏览器默认禁止了跨域访问，但并不禁止在页面中引用其他域的JS文件，script标签的src属性引用指向接收方的一个处理地址（后台），该地址返回的javascript方法会被执行，另外URL中可以传入一些参数，该方法只支持GET方式提交参数。我们常用FloadJS方法用的就是这种跨域方式。</p>
-<p><img src="/images/20180423/2018-04-23-02.jpeg" alt="alt text"></p>
-<h1 id="使用Jquery中getScript和getJson方法实现跨域"><a href="#使用Jquery中getScript和getJson方法实现跨域" class="headerlink" title="使用Jquery中getScript和getJson方法实现跨域"></a>使用Jquery中getScript和getJson方法实现跨域</h1><p>Jquery 的getScript 和 getJson方法都可以调用跨域的js或服务端脚本，但是它们的实现原理不一样。</p>
-<ol>
-<li>getScript 方法<br>语法：jQuery.getScript(url,success(response,status))<br>该函数是简写的 Ajax 函数，等价于：<br> $.ajax({<br>   Type: get,<br>   url: url,<br>   dataType: “script”,<br>   success: success<br> });<br>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。</li>
-</ol>
-<p><strong>实现跨域的原理：通过 GET 方式请求载入并执行一个 JavaScript 文件， 相当于通过src的形式的导入一个外部的js</strong></p>
-<ol start="2">
-<li>getJson方法<br>语法：jQuery.getJSON(url,data,success(data,status,xhr))<br>该函数是简写的 Ajax 函数，等价于：<br> $.ajax({<br>   url: url,<br>   data: data,<br>   success: callback,<br>   dataType: json<br> });<br>在 jQuery 1.2 中，您可以通过使用 JSONP 形式的回调函数来加载其他网域的 JSON 数据，如 “myurl?callback=?”。jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。<br><strong>实现跨域的原理：采用Jsonp原理实现跨域</strong><br>到这里大家有没有发现一个问题，好像一直都在讨论http get 请求方式的跨域问题，难道post 请求就不存在跨域问题吗？其实原生态From 表单 POST 到一个后台处理脚本是不存在跨域问题，因为提交过程不牵涉到JS操作其它域名的对象，可是POST表单后，页面会刷新，给用户带来的体验不佳，这时我们经常会想到用jquery ajax post 方法来提交表单， 虽然这种方式不会刷新页面，但是会存在跨域问题。因为ajax本身实际上是通过XMLHttpRequest对象来进行数据的交互，而浏览器出于安全考虑，是不允许js代码进行跨域操作，进而会发警告，所以jquery  ajax  post 是行不通的，可能这时有人会说，用jsonp数据类型啊，但是jsonp目前只支持get请求方式，对post请求不支持。我们在平时开发过程又不得不用post方式，因为get方式对请求的数量有大小限制，那在这种情况下如何保证用户良好的页面体验，又能解决跨域问题呢? 其实这时我们可以用最常见的document.domain + iframe 方式来实现。</li>
-</ol>
-<h1 id="document-domain-iframe"><a href="#document-domain-iframe" class="headerlink" title="document.domain + iframe"></a>document.domain + iframe</h1><p>这种方式只适用主域名相同，子域名不同的情形，在我们项目开发过程，这种方式还是比较适用。</p>
-<h1 id="服务端代理"><a href="#服务端代理" class="headerlink" title="服务端代理"></a>服务端代理</h1><p>从上面的说明可以看到，客户端的解决方案局存在一定的局限性，而且对于ajax跨域请求，无论两个域是否属于同个基础域，都无法在客户端加以解决，也就是说如果我们要想在ajax请求中访问其他域下的数据，就只能通过服务端进行处理了。服务端的解决方案的基本原理就是，由客户端将请求发给本域服务器，再由本域服务器的代理来请求数据并将响应返回给客户端。</p>
-<h1 id="使用HTML-5-postMessage方式"><a href="#使用HTML-5-postMessage方式" class="headerlink" title="使用HTML 5  postMessage方式"></a>使用HTML 5  postMessage方式</h1><p>HTML5中最酷的新功能之一就是 跨文档消息传输Cross Document Messaging。下一代浏览器都将支持这个功能：Chrome 2.0+、Internet Explorer 8.0+, Firefox 3.0+, Opera 9.6+, 和 Safari 4.0+ 。 Facebook已经使用了这个功能，用postMessage支持基于web的实时消息传递。<br>otherWindow.postMessage(message, targetOrigin);<br>otherWindow: 对接收信息页面的window的引用。可以是页面中iframe的contentWindow属性；window.open的返回值；通过name或下标从window.frames取到的值。<br>message: 所要发送的数据，string类型。<br>targetOrigin: 用于限制otherWindow，“*”表示不作限制<br>a.com/index.html中的代码。<br><strong>但是HTML5 在IE6, IE7浏览器下不兼容，目前移动端解决跨域问题用得比较多， PC机上用得比较少。</strong></p>
-<h1 id="使用flash"><a href="#使用flash" class="headerlink" title="使用flash"></a>使用flash</h1><p>如果你要读取一个外部文件，比如swf，picture，mp3等等，那么就需要一个跨域策略文件,allow-access-from domain表示允许访问的URl，如果有多个依次添加，如果允许所有就一个 allow-access-from domain = “*”就可以了。</p>
-<h1 id="个人小结"><a href="#个人小结" class="headerlink" title="个人小结"></a>个人小结</h1><p>在项目开发过程如果能用get方式解决的就尽量使用它，毕竟get的性能也比post高，而且处理get跨域请求的方法也比较多，比如用jquery库的 getScript和getJson方法。如果提交的数据比较大，一定用post方式提交，并且考虑用户的功能体验，可以用document.domain + iframe的方式来处理。</p>
+<p>Generator 函数的执行必须靠执行器，所以才有了co模块，而async函数自带执行器。也就是说，async函数的执行，与普通函数一模一样，只要一行。</p>
+<ul>
+<li>更好的语义。</li>
+</ul>
+<p>async和await，比起星号和yield，语义更清楚了。async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果。</p>
+<ul>
+<li>更广的适用性。</li>
+</ul>
+<p>co模块约定，yield命令后面只能是 Thunk 函数或 Promise 对象，而async函数的await命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时等同于同步操作）。</p>
+<ul>
+<li>返回值是 Promise。</li>
+</ul>
+<p>async函数的返回值是 Promise 对象，这比 Generator 函数的返回值是 Iterator 对象方便多了。你可以用then方法指定下一步的操作。进一步说，async函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而await命令就是内部then命令的语法糖。</p>
+<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>ES6 规定，Promise对象是一个构造函数，用来生成Promise实例。</p>
+<p>下面代码创造了一个Promise实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">  // ... some code</span><br><span class="line"></span><br><span class="line">  if (/* 异步操作成功 */)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。</p>
+<p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">promise.then(function(value) &#123;</span><br><span class="line">  // success</span><br><span class="line">&#125;, function(error) &#123;</span><br><span class="line">  // failure</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>then方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为resolved时调用，第二个回调函数是Promise对象的状态变为rejected时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。 Promise 的基本用法就谈到这，更深入用法，请参考阮一峰的<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">ECMAScript 6 入门</a></p>
+<p><em>特别需要指出的是在ES6之前，promise是一套规范和原则，只要设计的库复合规范的要求就都可以算是promise, 目前比较流行的promise库（插件）有q和when，RSVP.js，jQuery的Deferred等。ES6后，将Promise 众多规范中的一种写入语言标准，ES6中的 Promise 是其中一种，各个 Promise 规范之间有细微的差别(主要是特性上的)</em></p>
+<p>参考来源：</p>
+<ul>
+<li><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">ECMAScript 6 入门</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="noopener">Javascript异步编程的4种方法</a></li>
+</ul>
 
       
     </div>
@@ -481,7 +534,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://zhangbing.name/Javascript/javascript跨域/" title="javascript跨域">http://zhangbing.name/Javascript/javascript跨域/</a>
+    <a href="http://zhangbing.name/Javascript/谈谈ES6前后的异步编程/" title="谈谈ES6前后的异步编程">http://zhangbing.name/Javascript/谈谈ES6前后的异步编程/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -496,7 +549,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/跨域/" rel="tag"># 跨域</a>
+            <a href="/tags/异步/" rel="tag"># 异步</a>
           
         </div>
       
@@ -509,8 +562,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Mysql/mysql 切合业务精用语句收集/" rel="next" title="mysql 切合业务精用语句收集">
-                <i class="fa fa-chevron-left"></i> mysql 切合业务精用语句收集
+              <a href="/Javascript/javascript跨域/" rel="next" title="javascript跨域">
+                <i class="fa fa-chevron-left"></i> javascript跨域
               </a>
             
           </div>
@@ -519,8 +572,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Javascript/谈谈ES6前后的异步编程/" rel="prev" title="谈谈ES6前后的异步编程">
-                谈谈ES6前后的异步编程 <i class="fa fa-chevron-right"></i>
+              <a href="/面试/WEB开发面试畅谈（1）——Javascript封闭性设计/" rel="prev" title="WEB开发面试畅谈（1）——Javascript封闭性设计">
+                WEB开发面试畅谈（1）——Javascript封闭性设计 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -687,7 +740,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript跨域图表"><span class="nav-number">1.</span> <span class="nav-text">javascript跨域图表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态创建script"><span class="nav-number">2.</span> <span class="nav-text">动态创建script</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Jquery中getScript和getJson方法实现跨域"><span class="nav-number">3.</span> <span class="nav-text">使用Jquery中getScript和getJson方法实现跨域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#document-domain-iframe"><span class="nav-number">4.</span> <span class="nav-text">document.domain + iframe</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务端代理"><span class="nav-number">5.</span> <span class="nav-text">服务端代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用HTML-5-postMessage方式"><span class="nav-number">6.</span> <span class="nav-text">使用HTML 5  postMessage方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用flash"><span class="nav-number">7.</span> <span class="nav-text">使用flash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人小结"><span class="nav-number">8.</span> <span class="nav-text">个人小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#回调函数"><span class="nav-number">1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件监听"><span class="nav-number">2.</span> <span class="nav-text">事件监听</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布-订阅"><span class="nav-number">3.</span> <span class="nav-text">发布/订阅</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promises对象"><span class="nav-number">4.</span> <span class="nav-text">Promises对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generator函数"><span class="nav-number">5.</span> <span class="nav-text">Generator函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise"><span class="nav-number">6.</span> <span class="nav-text">Promise</span></a></li></ol></div>
             
 
           </div>
