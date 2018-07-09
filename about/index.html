@@ -112,7 +112,7 @@
       applicationID: '',
       apiKey: '',
       indexName: '',
-      hits: {"per_page":5},
+      hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
@@ -382,8 +382,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -475,6 +484,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduce"><span class="nav-number">1.</span> <span class="nav-text">Introduce</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#My-Recent-Coding-Activity"><span class="nav-number">2.</span> <span class="nav-text">My Recent Coding Activity</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#My-Recent-Used-Languages"><span class="nav-number">3.</span> <span class="nav-text">My Recent Used Languages</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sport-Trail-continuous-updating"><span class="nav-number">4.</span> <span class="nav-text">Sport Trail (continuous updating)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

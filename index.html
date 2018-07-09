@@ -111,7 +111,7 @@
       applicationID: '',
       apiKey: '',
       indexName: '',
-      hits: {"per_page":5},
+      hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
@@ -431,9 +431,16 @@
       
         
           
-            <p>请移步到 <a href="https://github.com/markbzhang/demo" target="_blank" rel="noopener">https://github.com/markbzhang/demo</a> ，有完整的README.MD</p>
+          请移步到 https://github.com/markbzhang/demo ，有完整的README.MD
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/学习案例/html&css学习_Github持续更新/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -604,152 +611,19 @@
       
         
           
-            <p>下面例举了日常前段开发中遇到的场景，解决方案有很多，但从开发阶段就进行规范，可以很大程度避免很多后续的潜在和兼容问题。</p>
-<h1 id="获取body元素"><a href="#获取body元素" class="headerlink" title="获取body元素"></a>获取body元素</h1><p>非标准做法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.body</span><br></pre></td></tr></table></figure>
-<p>W3C规范方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementsByTagName(&apos;body&apos;).item(0)</span><br></pre></td></tr></table></figure>
-<p>使用jQuery/Zepto</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;body&apos;);</span><br></pre></td></tr></table></figure>
-<h1 id="获取窗口标题"><a href="#获取窗口标题" class="headerlink" title="获取窗口标题"></a>获取窗口标题</h1><p>非标准做法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.title</span><br></pre></td></tr></table></figure>
-<p>W3C规范方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementsByTagName(&apos;title&apos;).item(0).innerHTML</span><br></pre></td></tr></table></figure>
-<p>使用jQuery/Zepto</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;title&apos;).text()</span><br></pre></td></tr></table></figure>
-<h1 id="监听iframe的加载完成事件"><a href="#监听iframe的加载完成事件" class="headerlink" title="监听iframe的加载完成事件"></a>监听iframe的加载完成事件</h1><ul>
-<li>写法1:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iframe.onload = function() &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<p>问题:存在兼容性问题，IE6、7无效</p>
-<ul>
-<li>写法2:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iframe.onload = iframe.onreadystatechange = function()&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<p>问题:逻辑复杂，事件绑定逻辑混乱，在某些浏览器上onload和onreadystatechange都会触发，需要另外加标记位判断，逻辑复杂。</p>
-<ul>
-<li>简洁而完全兼容的写法:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var bindIframeOnloadEvent = function(el, onload) &#123;</span><br><span class="line"> if (el.attachEvent)&#123;</span><br><span class="line">    el.attachEvent(&quot;onload&quot;, onload);</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">   el.onload = onload;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">bindIframeOnloadEvent(iframe, function()&#123;...&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="如何操作iframe内部的window"><a href="#如何操作iframe内部的window" class="headerlink" title="如何操作iframe内部的window"></a>如何操作iframe内部的window</h1><ul>
-<li>写法1:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iframe.contentWindow</span><br></pre></td></tr></table></figure>
-<p>问题: 部分浏览器不兼容（IE6\7），获取失败</p>
-<ul>
-<li>写法2:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.frames[frameId]</span><br></pre></td></tr></table></figure>
-<p>问题: 非标准调用，兼容性是问题，强制必须为iframe添加ID。</p>
-<ul>
-<li>简洁而完全兼容的写法:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var getIframeWindow = function(el) &#123;</span><br><span class="line">return el.contentWindow || el.contentDocument.parentWindow;</span><br><span class="line">&#125;;</span><br><span class="line">var win = getIframeWindow(iframe);</span><br></pre></td></tr></table></figure>
-<h1 id="设置iframe的边框"><a href="#设置iframe的边框" class="headerlink" title="设置iframe的边框"></a>设置iframe的边框</h1><ul>
-<li>写法1:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iframe.boder = 0;</span><br></pre></td></tr></table></figure>
-<p>问题: 非W3C标准，后面很可能废弃，部分浏览器不一定支持</p>
-<ul>
-<li>写法2:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iframe.style.boder = &apos;none&apos;;</span><br></pre></td></tr></table></figure>
-<p>问题: 完全依赖CSS控制，但存在兼容性问题，IE继续头疼 </p>
-<ul>
-<li>最终解决方案:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iframe.boder = 0;</span><br><span class="line">iframe.style.boder = &apos;none&apos;;</span><br></pre></td></tr></table></figure>
-<h1 id="如何在a标签上绑定鼠标点击事件"><a href="#如何在a标签上绑定鼠标点击事件" class="headerlink" title="如何在a标签上绑定鼠标点击事件"></a>如何在a标签上绑定鼠标点击事件</h1><ul>
-<li>写法1:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript:func();&quot;&gt;test&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<p>问题:</p>
-<ol>
-<li>不符合CSP规范</li>
-<li>等价于全局eval。只能调用公开的全局方法，污染全局变量</li>
-<li>鼠标悬停时，状态栏会显示要运行的代码？！这对最终用户不友好</li>
-<li>运行代码的上下文是window对象，和事件处理模型相违背</li>
-</ol>
-<ul>
-<li>写法2:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;#&quot; onclick=&quot;func();&quot;&gt;test&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<p>问题:</p>
-<ol>
-<li>不符合CSP规范</li>
-<li>onclick和href在部分浏览器(IE继续躺枪)行文诡异，执行冲突异常</li>
-<li>等价于全局eval。只能调用公开的全局方法，污染全局变量（原因同写法1）</li>
-</ol>
-<ul>
-<li>写法3:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;#&quot; onclick=&quot;func();return false;&quot;&gt;test&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<p>问题:只解决了问题2，其余问题仍存在 </p>
-<ul>
-<li>标准写法:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;a id=&apos;aTest&apos;&gt;test&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">document.getElementById(&apos;aTest&apos;).onclick = function() &#123;</span><br><span class="line">func();</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>使用jQuery/Zepto亦可，存在唯一的小问题是鼠标指针不是手形，是默认。可采用CSS样式来解决cursor:pointer 。</p>
-<h1 id="script标签的书写方法深挖"><a href="#script标签的书写方法深挖" class="headerlink" title="script标签的书写方法深挖"></a>script标签的书写方法深挖</h1><p>要点</p>
-<ol>
-<li>script标签的type属性不是必须的，默认缺省就是text/javascript</li>
-<li>script标签的language属性完全无用（asp时代微软似乎使用该属性来标记服务端语言是vb还是c#），不要画蛇添足</li>
-<li>动态创建的script标签必须要指定type=’text/javascript’，否则JS不会执行</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var script = document.createElement(&apos;script&apos;);</span><br><span class="line">script.type = &apos;text/javascript&apos;;</span><br><span class="line">script.src = &apos;###&apos;;</span><br><span class="line">document.getElementsByTagName(&apos;body&apos;).item(0).appendChild(script);</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>动态创建的script追加动作是异步的，并不会立刻取得script运行结果，如果要等待加载完成需要监听完成事件</li>
-<li>使用非标准或者比较新的属性需要格外注意，不要使代码逻辑依赖于这些特性。如defer/async属性</li>
-<li>使用script.onerror来监听脚本执行失败的情况（语法错误，初始化运行时错误等都会触发）</li>
-<li>监听script的完成事件比较复杂。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">varbindScriptOnloadEvent = function(script, onload) &#123;</span><br><span class="line">    var done = false;</span><br><span class="line">    script.onload = script.onreadystatechange = function() &#123;</span><br><span class="line">    if (!done &amp;&amp; (!this.readyState || this.readyState == &apos;loaded&apos; || this.readyState == &apos;complete&apos;)) &#123;</span><br><span class="line">        done = true;</span><br><span class="line">        script.onload = script.onreadystatechange = null;</span><br><span class="line">        onload();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">bindScriptOnloadEvent(script, function()&#123;...&#125;);</span><br></pre></td></tr></table></figure>
-<p>需要考虑兼容性，所以代码较多</p>
-<h1 id="substr函数不要使用"><a href="#substr函数不要使用" class="headerlink" title="substr函数不要使用"></a>substr函数不要使用</h1><p>原因：非标准，在部分浏览器报错，甚至连我的Android4.0上的浏览器都不认该函数</p>
-<p>替代方案：使用substring函数。</p>
-<h1 id="jQuery-Zepto选择器的-text-和-html-方法"><a href="#jQuery-Zepto选择器的-text-和-html-方法" class="headerlink" title="jQuery/Zepto选择器的.text()和.html()方法"></a>jQuery/Zepto选择器的.text()和.html()方法</h1><p>现状：大多数开发同学会混淆两者并乱用，不清楚何时用哪个</p>
-<p>详解：.text()方法用于获取和设置文本内容，.html()方法用户获取和设置HTML内容，当要设置或获取的内容仅仅为文本时，两者行为完全相同，但要操作的文本内容是HTML时，行为有着本质区别。</p>
-<p>总结：</p>
-<ol>
-<li>根据实际需要选择使用哪个方法，如能断定内容为纯文本请使用text()方法。仅当确实需要渲染HTML时才用html()方法</li>
-<li>从安全角度，text()方法比html()方法更安全，无注入风险。</li>
-<li>严格意义上，html()方法不符合CSP规范，直接将字符串解析为DOM节点</li>
-<li>业务需要确实要使用.html()方法渲染动态内容时，必须做安全检查，避免恶意代码注入</li>
-<li>.text()和.html()获取值可能存在代码缩进（空格和TAB），如有需要可以使用$.trim()来剔除</li>
-</ol>
-<h1 id="数组与对象深挖"><a href="#数组与对象深挖" class="headerlink" title="数组与对象深挖"></a>数组与对象深挖</h1><p>要点：</p>
-<ul>
-<li>数组对象仅有concat/reverse/slice/splice为标准API，而且绝对完全兼容</li>
-<li>数组对象请勿使用indexOf、lastIndexOf、map、every、forEach等非标准API，不仅兼容性存在问题，而且效率不一定高，反而不如自己实现</li>
-<li><p>遍历数组请将.length缓存到变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(vari=0,l=arr.length;i&lt;l;i++)&#123;...&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>遍历数组请勿使用此写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(vari in arr)&#123;...&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>遍历key-value型对象必须使用hasOwnProperty()来过滤遍历结果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(var key in obj) &#123;</span><br><span class="line">if(!obj.hasOwnProperty(key) continue;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不论是数组或对象，在遍历操作时不要改变被遍历的变量结构，如增删元素，增删key值等（虽然你可以这么做）,对于元素自身及子成员的修改是绝对安全的。</p>
-</li>
-</ul>
-<h1 id="关于Prototype的使用"><a href="#关于Prototype的使用" class="headerlink" title="关于Prototype的使用"></a>关于Prototype的使用</h1><p>要点：</p>
-<ul>
-<li>不要乱用Prototype。不要轻易在Object/Array/Function等对象上追加prototype（虽然我们已有某些库这么做了）容易产生歧义冲突，在使用for～in遍历时很容易引发问题。</li>
-<li>自定义的prototype成员会在for～in循环中出现，请根据实际情况使用hasOwnProperty()来过滤遍历结果。</li>
-</ul>
-<p>不严谨的写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Test() &#123;&#125;</span><br><span class="line">Test.prototype.a = 1;</span><br><span class="line">Test.prototype.b = 2;</span><br><span class="line">var o = new Test();</span><br><span class="line">for(vari in o) &#123;</span><br><span class="line">console.log(&#123;key: i, value: o&#125;);</span><br><span class="line">&#125;</span><br><span class="line">//&#123;key:a, value:1&#125;</span><br><span class="line">//&#123;key:b, value:2&#125;</span><br><span class="line">严谨的写法：</span><br><span class="line">var o = new Test();</span><br><span class="line">for(vari in o) &#123;</span><br><span class="line">if(!o.hasOwnProperty(i)) continue;</span><br><span class="line">console.log(&#123;key: i, value: o&#125;);</span><br><span class="line">&#125;</span><br><span class="line">//无输出</span><br></pre></td></tr></table></figure>
-<ul>
-<li>对象的__proto成员，用途是获取当前实例的原型对象。非标准实现，存在兼容性问题，请不要使用</li>
-<li>原则上不要轻易重写已存在的prototype方法。但可以在单个实例中覆写该方法</li>
-<li>prototype上定义静态对象变量，会造成所有对象共用，而不是分别创建实例，请在构造方法中分配实例</li>
-</ul>
-<p>错误写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function Test() &#123;&#125;</span><br><span class="line">Test.prototype.arr = [];</span><br><span class="line">var a = new Test();</span><br><span class="line">var b = new Test();</span><br><span class="line">a.arr.push(1);</span><br><span class="line">b.arr.push(2);</span><br><span class="line">console.log(a.arr, b.arr);</span><br><span class="line">//[1,2], [1,2]</span><br><span class="line">正确写法</span><br><span class="line">function Test() &#123;</span><br><span class="line">this.arr = [];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var a = new Test();</span><br><span class="line">var b = new Test();</span><br><span class="line">a.arr.push(1);</span><br><span class="line">b.arr.push(2);</span><br><span class="line">console.log(a.arr, b.arr);</span><br><span class="line">//[1], [2]</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>JS是门灵活的语言，灵活到想怎么写都可以。但里面坑还是不少的。在有多种选择时，多考虑下哪种方法更好，而不是盲目选择一种。</p>
-
-          
+          下面例举了日常前段开发中遇到的场景，解决方案有很多，但从开发阶段就进行规范，可以很大程度避免很多后续的潜在和兼容问题。
+获取body元素非标准做法
+1document.body
+W3C规范方法
+1document.getElementsByTagName(&apos;body&apos;).item
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/面试/WEB开发面面谈之（5）——写JS时必须注意的的一些问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -920,89 +794,16 @@
       
         
           
-            <p>网络应用程序，分为前端和后端两个部分。当前的发展趋势，就是前端设备层出不穷（手机、平板、桌面电脑、其他专用设备……）。</p>
-<p>因此，必须有一种统一的机制，方便不同的前端设备与后端进行通信。这导致API构架的流行，甚至出现”API First”的设计思想。RESTful API是目前比较成熟的一套互联网应用程序的API设计理论。</p>
-<h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>API与用户的通信协议，总是使用HTTPs协议。</p>
-<h1 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h1><p>应该尽量将API部署在专用域名之下: <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a> 。如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下：<a href="https://example.org/api/。" target="_blank" rel="noopener">https://example.org/api/。</a></p>
-<h1 id="版本（Versioning）"><a href="#版本（Versioning）" class="headerlink" title="版本（Versioning）"></a>版本（Versioning）</h1><p>应该将API的版本号放入URL:<a href="https://api.example.com/v1/" target="_blank" rel="noopener">https://api.example.com/v1/</a> 。 另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。Github采用这种做法。</p>
-<h1 id="路径（Endpoint）"><a href="#路径（Endpoint）" class="headerlink" title="路径（Endpoint）"></a>路径（Endpoint）</h1><p>路径又称”终点”（endpoint），表示API的具体网址。</p>
-<p>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。</p>
-<p>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。</p>
-<ul>
-<li><a href="https://api.example.com/v1/zoos" target="_blank" rel="noopener">https://api.example.com/v1/zoos</a></li>
-<li><a href="https://api.example.com/v1/animals" target="_blank" rel="noopener">https://api.example.com/v1/animals</a></li>
-<li><a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a></li>
-</ul>
-<h1 id="HTTP动词"><a href="#HTTP动词" class="headerlink" title="HTTP动词"></a>HTTP动词</h1><p>对于资源的具体操作类型，由HTTP动词表示。 常用的HTTP动词有下面五个（括号里是对应的SQL命令）。</p>
-<ul>
-<li>GET（SELECT）：从服务器取出资源（一项或多项）。</li>
-<li>POST（CREATE）：在服务器新建一个资源。</li>
-<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</li>
-<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</li>
-<li>DELETE（DELETE）：从服务器删除资源。</li>
-</ul>
-<p>还有两个不常用的HTTP动词。</p>
-<ul>
-<li>HEAD：获取资源的元数据。</li>
-<li>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。</li>
-</ul>
-<p>下面是一些例子。</p>
-<ul>
-<li>GET /zoos：列出所有动物园</li>
-<li>POST /zoos：新建一个动物园</li>
-<li>GET /zoos/ID：获取某个指定动物园的信息</li>
-<li>PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）</li>
-<li>PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）</li>
-<li>DELETE /zoos/ID：删除某个动物园</li>
-<li>GET /zoos/ID/animals：列出某个指定动物园的所有动物</li>
-<li>DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物</li>
-</ul>
-<h1 id="过滤信息（Filtering）"><a href="#过滤信息（Filtering）" class="headerlink" title="过滤信息（Filtering）"></a>过滤信息（Filtering）</h1><p>如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。下面是一些常见的参数。</p>
-<ul>
-<li>?limit=10：指定返回记录的数量。</li>
-<li>?offset=10：指定返回记录的开始位置。</li>
-<li>?page=2&amp;per_page=100：指定第几页，以及每页的记录数。</li>
-<li>?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</li>
-<li>?animal_type_id=1：指定筛选条件。</li>
-</ul>
-<p>参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</p>
-<h1 id="状态码（Status-Codes）"><a href="#状态码（Status-Codes）" class="headerlink" title="状态码（Status Codes）"></a>状态码（Status Codes）</h1><p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p>
-<ul>
-<li>200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</li>
-<li>201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</li>
-<li>202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</li>
-<li>204 NO CONTENT - [DELETE]：用户删除数据成功。</li>
-<li>400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</li>
-<li>401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</li>
-<li>403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</li>
-<li>404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</li>
-<li>406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</li>
-<li>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</li>
-<li>422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</li>
-<li>500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</li>
-</ul>
-<h1 id="错误处理（Error-handling）"><a href="#错误处理（Error-handling）" class="headerlink" title="错误处理（Error handling）"></a>错误处理（Error handling）</h1><p>如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    error: &quot;Invalid API key&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h1><p>针对不同操作，服务器向用户返回的结果应该符合以下规范。</p>
-<ul>
-<li>GET /collection：返回资源对象的列表（数组）</li>
-<li>GET /collection/resource：返回单个资源对象</li>
-<li>POST /collection：返回新生成的资源对象</li>
-<li>PUT /collection/resource：返回完整的资源对象</li>
-<li>PATCH /collection/resource：返回完整的资源对象</li>
-<li>DELETE /collection/resource：返回一个空文档</li>
-</ul>
-<h1 id="Hypermedia-API"><a href="#Hypermedia-API" class="headerlink" title="Hypermedia API"></a>Hypermedia API</h1><p>RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;link&quot;: &#123;</span><br><span class="line">  &quot;rel&quot;:   &quot;collection https://www.example.com/zoos&quot;,</span><br><span class="line">  &quot;href&quot;:  &quot;https://api.example.com/zoos&quot;,</span><br><span class="line">  &quot;title&quot;: &quot;List of zoos&quot;,</span><br><span class="line">  &quot;type&quot;:  &quot;application/vnd.yourformat+json&quot;</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。</p>
-<p>Hypermedia API的设计被称为HATEOAS。Github的API就是这种设计，访问api.github.com会得到一个所有可用API的网址列表。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;current_user_url&quot;: &quot;https://api.github.com/user&quot;,</span><br><span class="line">  &quot;authorizations_url&quot;: &quot;https://api.github.com/authorizations&quot;,</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从上面可以看到，如果想获取当前用户的信息，应该去访问api.github.com/user，然后就得到了下面结果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;message&quot;: &quot;Requires authentication&quot;,</span><br><span class="line">  &quot;documentation_url&quot;: &quot;https://developer.github.com/v3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面代码表示，服务器给出了提示信息，以及文档的网址。</p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>(1)API的身份认证应该使用OAuth 2.0框架。</p>
-<p>(2)服务器返回的数据格式，应该尽量使用JSON，避免使用XML。</p>
-<p><strong>文章转自阮一峰的 <a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="noopener">RESTful API 设计指南</a>,适当精简少部分语句</strong></p>
-
-          
+          网络应用程序，分为前端和后端两个部分。当前的发展趋势，就是前端设备层出不穷（手机、平板、桌面电脑、其他专用设备……）。
+因此，必须有一种统一的机制，方便不同的前端设备与后端进行通信。这导致API构架的流行，甚至出现”API First”的设计思想。RESTful API是目前比较成熟的一套互联网应用
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/面试/WEB开发面面谈之（4）——RESTful API 设计指南/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1173,41 +974,16 @@
       
         
           
-            <h1 id="什么是CSP？"><a href="#什么是CSP？" class="headerlink" title="什么是CSP？"></a>什么是CSP？</h1><p>CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。</p>
-<p>CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style等等可能的远程的资源）。通过CSP协定，让WEB处于一个安全的运行环境中。</p>
-<p>更多关于CSP的介绍可以参考W3C的相关文档： <a href="https://dvcs.w3.org/hg/content-security-policy/raw-file/tip/csp-specification.dev.html#content-security-policy-header-field" target="_blank" rel="noopener">https://dvcs.w3.org/hg/content-security-policy/raw-file/tip/csp-specification.dev.html#content-security-policy-header-field</a><br>一部分中文翻译：<a href="https://www.w3.org/html/ig/zh/wiki/CSP" target="_blank" rel="noopener">CSP - HTML5 Chinese Interest Group Wiki</a></p>
-<h1 id="CSP的讨论"><a href="#CSP的讨论" class="headerlink" title="CSP的讨论"></a>CSP的讨论</h1><p>CSP的出现可以一定程度上的减少XSS的攻击，但不一定意味着XSS的消失。 </p>
-<p><strong>很多人把它喻为XSS攻击的终结者，因为这种策略不再像传统只靠各种正则和特征匹配来识别跨站攻击Payload，而是直接从协议层把一些存在安全隐患的用法默认给干掉了，把同源同域更发挥到了极致。</strong></p>
-<ol>
-<li>只允许本站资源Content-Security-Policy： default-src‘self’</li>
-<li>允许本站的资源以及任意位置的图片以及<a href="http://trustedscripts.example.com下的脚本。Content-Security-Policy：" target="_blank" rel="noopener">http://trustedscripts.example.com下的脚本。Content-Security-Policy：</a> default-src ‘self’；img-src *；script-src <a href="http://trustedscripts.example.com。" target="_blank" rel="noopener">http://trustedscripts.example.com。</a></li>
-<li>CSP策略在默认的情况下是不允许使用data URIs资源的,如果要使用，那么需要显示的指定,比如:img-src ‘self’ data:</li>
-<li>script-src：在处理脚本资源的时候设置”unsafe-inline”可以阻止内联Js代码的执行。使用unsafe-eval开关可以禁止eval,setTimeout,setInterval函数的执行。</li>
-<li>object-src：控制embed,code,archive applet等对象。</li>
-<li>style-src：会控制样式表@import和rel时所引入的URI资源，设置unsafe-inline规则可以是浏览器拒绝解析内部样式和内联样式定义。并不会阻止链入外部样式表。</li>
-<li>img-src：可以控制图片资源的连接，包括img标签的src属性，以及CSS3中的url()和image()方法，以及link标签中的href属性(当rel设置成与图像相关的值，比如HTML支持的icon)。</li>
-<li>media-src:控制媒体类型的外部链入资源，如video, audio, source, 和track标签的src属性。</li>
-<li>frame-src:控制内嵌框架包含的外部页面连接：iframe or a frame。</li>
-<li>font-src：控制CSS中的@font-face</li>
-<li>connect-src：控制XMLHttpRequest中的open()，WebSocket，EventSource</li>
-<li>inline script和eval类型函数(包括eval、setInterval、setTimeout和new Function())是不被执行的。另外data URIs也是默认不允许使用的，XBL,只允许通过chrome:和resource:形式uri请求的XBL,其它的比如在CSS中通过-moz-binding来指定的XBL则不允许被执行。</li>
-</ol>
-<p><strong>早期WEB开发的规范并不明确，为了向前兼容性，最新的浏览器仍兼容着最古老而且可能存在风险的语法和接口 。通俗的讲，CSP明确地告诉我们，哪些WEB开发行为对于宽松模式来说是可以使用的，但出于安全问题我们应尽早摒弃。我们不仅要做到实现更能，而且要更好更安全地实现。</strong></p>
-<p>下面例举个CSP适用的实际场景，大家会一目了然CSP的约束内容:</p>
-<h1 id="不执行Inline-JavaScript"><a href="#不执行Inline-JavaScript" class="headerlink" title="不执行Inline JavaScript"></a>不执行Inline JavaScript</h1><p>Inline JavaScript和eval一样危险，将不会被执行。这条规则将同时禁止内嵌&lt; script &gt;块和内联事件（例如：&lt; button onclick=”…” &gt;;<a href="”javascript:...”">）。<br>这条规则通过禁止第三方脚本避免大量的跨脚本攻击。同时它还强制您编写内容与表现分离的代码（这本就是您该做的，对吧？）。用个例子说明这一点：假设您在一个单独的popup.html文件中实现如下Browser Action弹出页：</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;My Awesome Popup!&lt;/title&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function awesome() &#123;</span><br><span class="line">              // do something awesome!</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">functiontotallyAwesome() &#123;</span><br><span class="line">              // do something TOTALLY awesome!</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">functionclickHandler(element) &#123;</span><br><span class="line">setTimeout(&quot;awesome(); totallyAwesome()&quot;, 1000);</span><br><span class="line">            &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;button onclick=&quot;clickHandler(this)&quot;&gt;</span><br><span class="line">            Click for awesomeness!</span><br><span class="line">&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>为了使它能以您所希望的方式运行，结合本规则，需要做以下三个方面的修改：</p>
-<ul>
-<li>clickHandler的定义需移到外部JavaScript文件中（如：popup.js）。</li>
-<li>内联事件需通过addEventListener，并移到外部popup.js文件中实现。</li>
-<li>为了避免使用转换字符串到JavaScript的函数”awesome(); totallyAwesome()”的执行，setTimeout调用需要重写。</li>
-</ul>
-<p>修改之后将会像下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">popup.js:</span><br><span class="line"></span><br><span class="line">function awesome() &#123;</span><br><span class="line">          // Do something awesome!</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">functiontotallyAwesome() &#123;</span><br><span class="line">          // do something TOTALLY awesome!</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">functionawesomeTask() &#123;</span><br><span class="line">awesome();</span><br><span class="line">totallyAwesome();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">functionclickHandler(e) &#123;</span><br><span class="line">setTimeout(awesomeTask, 1000);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Add event listeners once the DOM has fully loaded by listening for the</span><br><span class="line"></span><br><span class="line">        // `DOMContentLoaded` event on the document, and adding your listeners to</span><br><span class="line"></span><br><span class="line">        // specific elements when it triggers.</span><br><span class="line"></span><br><span class="line">document.addEventListener(&apos;DOMContentLoaded&apos;, function () &#123;</span><br><span class="line">document.querySelector(&apos;button&apos;).addEventListener(&apos;click&apos;, clickHandler);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">popup.html:</span><br><span class="line"></span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;My Awesome Popup!&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;popup.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;button&gt;Click for awesomeness!&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>首先CSP是可以在一定程度上提高XSS的攻击难度的，甚至杜绝XSS，前提是CSP策略用的好。还要考虑CSP能否普及，因为CSP在提供安全性的同时也提高了前端逻辑的复杂度，很多资源需要调整，类似QQ，新浪，搜狐这样的站群，想通过合适的CSP同时提高安全性和易用性是很难的。但是我们仍要尽可能使用更加规范的编码方式提高WEB开发的质量。</p>
-<p>目前CSP规范并未应用于全部浏览器，仅仅新浏览器会得到支持。但是遵循CSP规范开发的WEB应用将获得更好的代码结构和用户体验，大大提高安全性。这可能会彻底改变你之前的开发习惯和方式。甚至你会恍然发现，之前的代码是如此脆弱不堪。甚至会有些不适。但是，时代总是向前发展的。当你渐渐习惯并接受了它，才发现它带来的无尽好处，助你在web开发的道路上走得更快更好。</p>
-
-          
+          什么是CSP？CSP是由单词 Content Security Policy 的首单词组成，CSP旨在减少(注意这里是减少而不是消灭)跨站脚本攻击。
+CSP是一种由开发者定义的安全性政策性申明，通过CSP所约束的的规责指定可信的内容来源（这里的内容可以指脚本、图片、iframe、fton、style
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/面试/WEB开发面试畅谈（3）——内容安全策略CSP/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1378,57 +1154,19 @@
       
         
           
-            <h1 id="常规策略"><a href="#常规策略" class="headerlink" title="常规策略"></a>常规策略</h1><p>能不用图片就不用，透明、边框、圆角、阴影、渐变都可以用CSS实现，SVG、canvas或iconfont等在主流浏览器中都已经普遍支持，可代替图片，且体积更小更具优势。SVG可无失真无限放大缩小；Canvas可实现2D、3D动态效果等。</p>
-<ul>
-<li>压缩</li>
-</ul>
-<p>简单压缩。使用在线图片压缩网站，使用构建工具，grunt(grunt-imagemin)、gulp(gulp-book)、webpack(url-loader)等。</p>
-<ul>
-<li>CDN部署 &amp; 合理缓存设置 &amp; 多尺寸支持</li>
-</ul>
-<p>CDN部署不用多说，几乎是任何图片服务的标配，要求支持 gzip 压缩。针对不同的图片类型设置不同的浏览器缓存时间（max-age），包括：用户头像、Logo、icon、文案配图等；针对不同的设备尺寸，采用不同尺寸的图片大小（PC、Mobile、Pad）；针对不同的设计稿图片尺寸需求，拉取不同的图片尺寸（用户头像采用100像素，新闻类列表页可采用400像素，详情页拉取1000像素），可节省流量、缩短请求传输时间。</p>
-<ul>
-<li>使用Data-url/base64</li>
-</ul>
-<p>在http1.x时代，为了减少小图片请求带来的损耗（主要是协议头）而将其转化为Base64编码内嵌在CSS或者HTML中。存在的问题是转换为Base64编码的体积要比原图本身大。通常我们只将小于8kb的图片转换为Base64。</p>
-<ul>
-<li>合并精灵图</li>
-</ul>
-<p>使用构建工具将多个小图合并在一张大图上，特点是减少HTTP请求数。缺点是：“一荣俱荣，一损俱损”。一旦加载失败，所有图片都会展示失败。</p>
-<ul>
-<li><p>接入webP、sharpP等优秀图片格式，减少带宽流量，加快图片加载速度</p>
-</li>
-<li><p>渐进增强</p>
-</li>
-</ul>
-<p>图片加载有逐行扫描和交错扫描，在弱网络环境下，使用交错扫描加载方式的大图会先让用户看到图片的大致轮廓，对用户更加友好。具体可在Photoshop图片导出中选择交错体验尝试。</p>
-<ul>
-<li>渐进增强其他方式</li>
-</ul>
-<p>知名博客发布网站Medium中的图片采用了 纯色 -&gt; 低质量拉伸图片+高斯模糊 -&gt; 正常标准图片的加载过程。可以通过分析其代码发现，其原理是这样的：1）渲染一个div，通过对容器设置宽高使其比例和大小与最终图片的比例和大小相同，避免图片加载出来的时候导致的页面的重排；2）使用 img 标签来加载一张原图质量的 10% ~ 20%的小图。由于体积小，所以可以很快加载并显示；3）小图加载完成后使用 canvas 绘制高斯模糊透明效果覆盖在小图之上。同时请求最终要加载的大图；4）最终大图加载完成后隐藏canvas。缺点：费流量，适合WiFi和有线网络。实现稍微复杂</p>
-<ul>
-<li>按需加载</li>
-</ul>
-<p>懒加载：需要的时候才去加载，不需要不加载。</p>
-<p>预加载：对于即将看到的图片预拉取，比如图片查看器中，预先拉取当前图片中后2~3张。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">常见的方式如：</span><br><span class="line">// 长列表</span><br><span class="line">if(document.documentElement.clientHeight &gt; targetElement.getBoundingClientReact().top)&#123;</span><br><span class="line">    // load image</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 图片查看器</span><br><span class="line">const PRELOADNUM = 3</span><br><span class="line">if(index &lt;= current + PRELOADNUM &amp;&amp; index &gt;= current - PRELOADNUM)&#123;</span><br><span class="line">    // load image</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>请求失败占位图 &amp; 重试机制</li>
-</ul>
-<p>图片加载失败后需要有占位图（纯色/图片），并且有稍后自动重试的功能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//部分代码</span><br><span class="line">state=&#123;</span><br><span class="line">    src: http://image.xxx.com/12345.png,</span><br><span class="line">    retry: 0</span><br><span class="line">&#125;</span><br><span class="line">render() &#123;</span><br><span class="line">    return &lt;img onError=&#123;this.onError.bind(this)&#125; src=&#123;src&#125; /&gt;</span><br><span class="line">&#125;</span><br><span class="line">onError(e, src)&#123;</span><br><span class="line">    if(this.state.retry &gt; 0) &#123; // 仅重试一次，否则加载默认图</span><br><span class="line">        this.setState(&#123; src: http://image.xxx.com/defaultImg.png &#125;)</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        let &#123; src. retry &#125; = this.state,</span><br><span class="line">            src += &apos;&amp;time=&apos; + ~~(Math.random()*1E6);</span><br><span class="line">        this.setState(&#123; src, retry： ++retry &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>媒体查询 &amp; picture 标签</li>
-</ul>
-<p>实验性功能详见<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/picture" target="_blank" rel="noopener">HTML picture元素</a></p>
-<h1 id="活动页"><a href="#活动页" class="headerlink" title="活动页"></a>活动页</h1><p>活动H5页面的特点是具有高并发访问量。尤其是在节假日访问量飙涨的状况下，对访问量的预估对于图片优化具有非常重大的意义。我们应该怎样优化？</p>
-<ul>
-<li>活动页面从设计上就应该避免大量的图片展示，尽可能减少图片</li>
-<li>使用一张背景大图，避免多个图片使用绝对定位层叠</li>
-<li>如果有可能，最好使用CSS、SVG、canvas或iconfont代替图片；</li>
-<li>减少图片请求数，小图片采用base64内嵌在CSS中；</li>
-<li>采用离线包</li>
-</ul>
+          常规策略能不用图片就不用，透明、边框、圆角、阴影、渐变都可以用CSS实现，SVG、canvas或iconfont等在主流浏览器中都已经普遍支持，可代替图片，且体积更小更具优势。SVG可无失真无限放大缩小；Canvas可实现2D、3D动态效果等。
 
-          
+压缩
+
+简单压缩。使用在线图片压缩网站，使用构建工具
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/面试/WEB开发面试畅谈（2）——多场景下的图片优化策略/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1599,24 +1337,16 @@
       
         
           
-            <p>日常开发中，我们经常会提到模块化开发、代码规范等等，但到了以HTML和Javascript为首的WEB开发这里，一切都变了。</p>
-<p>无论是HTML还是Javascript都以其松散的结构和宽松的规范极大降低了开发成本，但又同时引入了新的问题：不同的开发人员有着不同的开发习惯，当然这些习惯也有好有坏，大多数程序员只是坚持着”能运行就可以“的思想观念，而这些并不利于项目的长期发展。于WEB开发中松散的特性，许多思路和经验并不是语言层面约束的，而是通过特有的代码逻辑和结构加以维护。所以在观看下文时，请勿在评论中发表类似如下的评论：”搞那么复杂干嘛？直接var一个变量去改不就好了，干嘛用闭包，我自己写的代码自己清楚，我用人格担保我的调用正确“，扯远了，如果你认同我上面的大体思想，请继续往下看。</p>
-<p>大多数开发人员在第一次开发WEB时，一定写过类似如下的代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var b = 2;</span><br><span class="line">alert(a+b);</span><br></pre></td></tr></table></figure></p>
-<p>我们欢呼着把脚步踏入了JS开发行列，并且意识到JS的强大，简单堆叠代码就能实现功能。但时到如今回头看这段代码，确实问题重重。<br>提到此，我们已经不是关注功能实现的问题，而是设计的问题。功能是个人都能实现，但设计确实良莠不齐因人而异。<br>以上述代码为例，我们仅仅需要实现alert(a+b)却同时生硬的在全局书写了两个全局变量a、b。而在其余地方这两个变量均无用。<br>倘若另一段代码也没做封闭处理，也用全局a、b，很容易引发冲突问题，而且不是异常，难于定位。<br>实现封闭，最简单的方式是定义闭包，闭包简而言之就是构造一个匿名函数并且立刻执行它。我们会得到执行结果，却不会将局部变量暴露给外层或全局。</p>
-<p>优化后的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var a = 1;</span><br><span class="line"> var b = 2;</span><br><span class="line"> alert(a+b);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>简单构造的闭包语法，可以很方便地将非闭包语法加以封闭，在调试阶段，确保变量不冲突的前提下，可将首尾行注释，方便在Chrome等开发工具中调试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//(function() &#123;</span><br><span class="line"> var a = 1;</span><br><span class="line"> var b = 2;</span><br><span class="line"> alert(a+b);</span><br><span class="line">//&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>封闭性是一个良好代码设计的开始，闭包内的变量默认是私有<br>（这里不考虑不用var声明的全局变量，参照JS代码规范）。<br>我们可以选择性地在闭包的结尾将公开成员公开出去。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"> window.getPageOpenTime = getPageOpenTime;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>但也不是教条主义。比如我们要定义一组API，其实可以这么实现<br>但按照前面的规范，getNow()与getPageOpenTime()是互相独立的，而且getNow()中理应无法调用pageOpenTime。代码该写成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"> window.getPageOpenTime = getPageOpenTime;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">(function()&#123;</span><br><span class="line"> function getNow() &#123;</span><br><span class="line"> return new Date();</span><br><span class="line"> &#125;</span><br><span class="line"> window.getNow = getNow;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>那么恭喜你，你已经犯了教条主义。也就是过度设计。我们实现的API内部是几乎不可能被外界干预的。<br>没必要设过于复杂的限制约束，不论复杂度还是维护都麻烦。<br>这又是与封闭性互为反面的，如何权衡呢？<br>我们只需要保证对外公开的接口严格准确，内部是可以更灵活一些的。即便丧失了局部封闭性，但对外接口还是封闭的。而且也更加灵活。</p>
-<p>那么我们最终实现的代码如下即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"> function getNow() &#123;</span><br><span class="line"> return new Date();</span><br><span class="line"> &#125;</span><br><span class="line"> window.getPageOpenTime = getPageOpenTime;</span><br><span class="line"> window.getNow = getNow;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>再深入思考一下，我们把一坨函数直接暴露给window真的好么？倘若我们有100个函数，不敢想象。。<br>我们需要做一个包装对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"> function getNow() &#123;</span><br><span class="line"> return new Date();</span><br><span class="line"> &#125;</span><br><span class="line"> var TimeTools = &#123;</span><br><span class="line"> getPageOpenTime: getPageOpenTime,</span><br><span class="line"> getNow: getNow</span><br><span class="line"> &#125;;</span><br><span class="line"> window.TimeTools = TimeTools</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>这样就保证全局只有唯一一个暴露对象了。</p>
-<p>那我们继续深入，万一有另外一个人也蛋疼的起了个叫TimeTools的全局变量，咋办？？？继续冲突中<br>我想说，非要把人往死路逼么？好吧，那我也拿出看家本领。参见jQuery.noConflict()方法<br>大意就是在赋值全局变量时，先保存之前版本的全局变量，如果冲突，可以调用noConflict()方法回滚全局变量，并且返回私有的工具对象</p>
-<p>//我非要叫TimeTools，你咬我啊</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var TimeTools = &#123;</span><br><span class="line"> abc: 123</span><br><span class="line">&#125;; </span><br><span class="line">(function() &#123;</span><br><span class="line"> var pageOpenTime = new Date();</span><br><span class="line"> function getPageOpenTime() &#123;</span><br><span class="line"> return pageOpenTime;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> function getNow() &#123;</span><br><span class="line"> return new Date();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> var TimeTools = &#123;</span><br><span class="line"> getPageOpenTime: getPageOpenTime,</span><br><span class="line"> getNow: getNow</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> var oldTimeTools = window.TimeTools;</span><br><span class="line"> function noConflict() &#123;</span><br><span class="line"> window.TimeTools = oldTimeTools;</span><br><span class="line"> return TimeTools;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> TimeTools.noConflict = noConflict;</span><br><span class="line"></span><br><span class="line"> window.TimeTools = TimeTools</span><br><span class="line">&#125;)();</span><br><span class="line">//测试代码</span><br><span class="line">(function() &#123;</span><br><span class="line"> var TimeTools = window.TimeTools.noConflict();</span><br><span class="line"></span><br><span class="line"> console.log(TimeTools.getNow()); //我的API</span><br><span class="line"> console.log(window.TimeTools.abc); //原始页面上的全局变量</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<p>通过如上层层深入的设计，我们可以保持js代码的封闭性，在开发底层库或者中间件的过程中，可以大大降低冲突的风险，更便于调试。</p>
-
-          
+          日常开发中，我们经常会提到模块化开发、代码规范等等，但到了以HTML和Javascript为首的WEB开发这里，一切都变了。
+无论是HTML还是Javascript都以其松散的结构和宽松的规范极大降低了开发成本，但又同时引入了新的问题：不同的开发人员有着不同的开发习惯，当然这些习惯也有好有坏，大多数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/面试/WEB开发面试畅谈（1）——Javascript封闭性设计/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1787,90 +1517,17 @@
       
         
           
-            <p>Javascript 语言的执行环境是“单线程”的，如果没有异步编程，根本没法用，非卡死不可。</p>
-<p>为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）两种模式概念很好理解。</p>
-<p>ES6 诞生以前，异步编程的方法，大概有下面四种：回调函数 ，事件监听 ，发布/订阅 ，Promise对象。</p>
-<h1 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h1><p>这是异步编程最基本的方法。</p>
-<p>假定有两个函数f1和f2，后者等待前者的执行结果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　f1();</span><br><span class="line">　　f2();</span><br></pre></td></tr></table></figure>
-<p>如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　function f1(callback)&#123;</span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line">　　　　　　// f1的任务代码</span><br><span class="line">　　　　　　callback();</span><br><span class="line">　　　　&#125;, 1000);</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
-<p>执行代码就变成下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1(f2);</span><br></pre></td></tr></table></figure>
-<p>采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
-<p>回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。</p>
-<h1 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h1><p>另一种思路是采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。</p>
-<p>还是以f1和f2为例。首先，为f1绑定一个事件（这里采用的jQuery的写法）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1.on(&apos;done&apos;, f2);</span><br></pre></td></tr></table></figure>
-<p>上面这行代码的意思是，当f1发生done事件，就执行f2。然后，对f1进行改写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　function f1()&#123;</span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line">　　　　　　// f1的任务代码</span><br><span class="line">　　　　　　f1.trigger(&apos;done&apos;);</span><br><span class="line">　　　　&#125;, 1000);</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
-<p>f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而开始执行f2。</p>
-<p>这种方法的优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以”去耦合”（Decoupling），有利于实现模块化。缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。</p>
-<h1 id="发布-订阅"><a href="#发布-订阅" class="headerlink" title="发布/订阅"></a>发布/订阅</h1><p>上一节的”事件”，完全可以理解成”信号”。</p>
-<p>我们假定，存在一个”信号中心”，某个任务执行完成，就向信号中心”发布”（publish）一个信号，其他任务可以向信号中心”订阅”（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做”发布/订阅模式”（publish-subscribe pattern），又称”观察者模式”（observer pattern）。</p>
-<p>这个模式有多种实现，下面采用的是Ben Alman的Tiny Pub/Sub，这是jQuery的一个插件。</p>
-<p>首先，f2向”信号中心”jQuery订阅”done”信号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery.subscribe(&quot;done&quot;, f2);</span><br></pre></td></tr></table></figure>
-<p>然后，f1进行如下改写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　function f1()&#123;</span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line">　　　　　　// f1的任务代码</span><br><span class="line">　　　　　　jQuery.publish(&quot;done&quot;);</span><br><span class="line">　　　　&#125;, 1000);</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
-<p>jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心”jQuery发布”done”信号，从而引发f2的执行。</p>
-<p>此外，f2完成执行后，也可以取消订阅（unsubscribe）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery.unsubscribe(&quot;done&quot;, f2);</span><br></pre></td></tr></table></figure>
-<p>这种方法的性质与”事件监听”类似，但是明显优于后者。因为我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。</p>
-<h1 id="Promises对象"><a href="#Promises对象" class="headerlink" title="Promises对象"></a>Promises对象</h1><p>Promises对象是CommonJS工作组提出的一种规范，目的是为异步编程提供统一接口。</p>
-<p>简单说，它的思想是，每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1().then(f2);</span><br></pre></td></tr></table></figure>
-<p>f1要进行如下改写（这里使用的是jQuery的实现）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">　　function f1()&#123;</span><br><span class="line">　　　　var dfd = $.Deferred();</span><br><span class="line">　　　　setTimeout(function () &#123;</span><br><span class="line">　　　　　　// f1的任务代码</span><br><span class="line">　　　　　　dfd.resolve();</span><br><span class="line">　　　　&#125;, 500);</span><br><span class="line">　　　　return dfd.promise;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
-<p>这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。</p>
-<p>比如，指定多个回调函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1().then(f2).then(f3);</span><br></pre></td></tr></table></figure>
-<p>再比如，指定发生错误时的回调函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1().then(f2).fail(f3);</span><br></pre></td></tr></table></figure>
-<p>而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。</p>
-<hr>
-<p>ES6诞生后，出现了Generator函数，它将 JavaScript 异步编程带入了一个全新的阶段。ES6也将Promise 其写进了语言标准，统一了用法，原生提供了Promise对象。</p>
-<p>故ES6异步编程的方法，大概有两种：Generator函数，Promise。</p>
-<h1 id="Generator函数"><a href="#Generator函数" class="headerlink" title="Generator函数"></a>Generator函数</h1><p>特点： 带星号function，yield语句 ，next() 获取下一个yield表达式中yield后的值，拥有遍历器接口，与for..of可搭配使用</p>
-<p>下面代码中，Generator函数封装了一个异步操作，该操作先读取一个远程接口，然后从JSON格式的数据解析信息。这段代码非常像同步操作，除了加上了yield命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var fetch = require(&apos;node-fetch&apos;);</span><br><span class="line"></span><br><span class="line">function * gen() &#123;</span><br><span class="line">    var url = &apos;http://api.github.com/users/github&apos;;</span><br><span class="line">    var result = yield fetch(url);</span><br><span class="line">    console.log(result.bio);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var g = gen();</span><br><span class="line">var result = g.next();</span><br><span class="line"></span><br><span class="line">result.value.then(function(data) &#123;</span><br><span class="line">    return data.json();</span><br><span class="line">&#125;).then(function (data) &#123;</span><br><span class="line">    g.next(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><em>执行过程:</em></p>
-<p>首先执行Generator函数，获取遍历器对象，然后使用next 方法（第二行），执行异步任务的第一阶段。由于Fetch模块返回的是一个Promise对象，因此要用then方法调用下一个next 方法。</p>
-<p><em>缺点：</em></p>
-<p>可以看到，虽然Generator函数将异步操作表示得很简洁，但是流程管理却不方便（即何时执行第一阶段、何时执行第二阶段），即如何实现自动化的流程管理。</p>
-<p><em>补充拓展</em></p>
-<p>可以参考阮一峰的<a href="http://es6.ruanyifeng.com/#docs/generator-async" target="_blank" rel="noopener">ECMAScript 6 入门</a>用Thunk函数实现自动化流程管理,对Generator函数进行拓展，前提是每一个异步操作，都要是Thunk函数,进价就是再用CO模块来实现自动化流程管理，co模块其实就是将两种自动执行器（Thunk 函数和 Promise 对象），包装成一个模块。使用 co 的前提条件是，Generator 函数的yield命令后面，只能是 Thunk 函数或 Promise 对象。如果数组或对象的成员，全部都是 Promise 对象，也可以使用 co。后面，ES2017标准引入了async函数，对Generator再“语法升级”， async 函数是什么？一句话，它就是 Generator 函数的语法糖。async函数对 Generator 函数进行了改进，体现在以下四点：</p>
-<ul>
-<li>内置执行器。</li>
-</ul>
-<p>Generator 函数的执行必须靠执行器，所以才有了co模块，而async函数自带执行器。也就是说，async函数的执行，与普通函数一模一样，只要一行。</p>
-<ul>
-<li>更好的语义。</li>
-</ul>
-<p>async和await，比起星号和yield，语义更清楚了。async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果。</p>
-<ul>
-<li>更广的适用性。</li>
-</ul>
-<p>co模块约定，yield命令后面只能是 Thunk 函数或 Promise 对象，而async函数的await命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时等同于同步操作）。</p>
-<ul>
-<li>返回值是 Promise。</li>
-</ul>
-<p>async函数的返回值是 Promise 对象，这比 Generator 函数的返回值是 Iterator 对象方便多了。你可以用then方法指定下一步的操作。进一步说，async函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而await命令就是内部then命令的语法糖。</p>
-<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>ES6 规定，Promise对象是一个构造函数，用来生成Promise实例。</p>
-<p>下面代码创造了一个Promise实例。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">  // ... some code</span><br><span class="line"></span><br><span class="line">  if (/* 异步操作成功 */)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。</p>
-<p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">promise.then(function(value) &#123;</span><br><span class="line">  // success</span><br><span class="line">&#125;, function(error) &#123;</span><br><span class="line">  // failure</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>then方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为resolved时调用，第二个回调函数是Promise对象的状态变为rejected时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。 Promise 的基本用法就谈到这，更深入用法，请参考阮一峰的<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">ECMAScript 6 入门</a></p>
-<p><em>特别需要指出的是在ES6之前，promise是一套规范和原则，只要设计的库复合规范的要求就都可以算是promise, 目前比较流行的promise库（插件）有q和when，RSVP.js，jQuery的Deferred等。ES6后，将Promise 众多规范中的一种写入语言标准，ES6中的 Promise 是其中一种，各个 Promise 规范之间有细微的差别(主要是特性上的)</em></p>
-<p>参考来源：</p>
-<ul>
-<li><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">ECMAScript 6 入门</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="noopener">Javascript异步编程的4种方法</a></li>
-</ul>
-
-          
+          Javascript 语言的执行环境是“单线程”的，如果没有异步编程，根本没法用，非卡死不可。
+为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）两种模式概念很好理解。
+ES6 诞生以前，异步编程的方法，大概有下面四种
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Javascript/谈谈ES6前后的异步编程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2041,34 +1698,16 @@
       
         
           
-            <p>最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。</p>
-<p>Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域下的数据对象，出于安全性考虑，几乎所有浏览器都不允许这种跨域访问，这就导致在一些ajax和iframe应用中，使用跨域的web service会成为一个问题。</p>
-<h1 id="javascript跨域图表"><a href="#javascript跨域图表" class="headerlink" title="javascript跨域图表"></a>javascript跨域图表</h1><p>那到底什么是跨域，简单地理解就是因为JavaScript同源策略的限制，a.com 域名下的js无法操作b.com或是c.a.com域名下的对象。更详细的说明可以看下表：</p>
-<p><img src="/images/20180423/2018-04-23-01.jpg" alt="跨域图表"></p>
-<p>特别注意两点：</p>
-<ul>
-<li>第一，如果是协议和端口造成的跨域问题“前台”是无能为力的，</li>
-<li>第二：在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。</li>
-</ul>
-<p>“URL的首部”指window.location.protocol +window.location.host，也可以理解为“Domains, protocols and ports must match”（本段来自网络，个人觉得这段对js跨域描述得在清晰不过了）。</p>
-<p>跨域请求无处不在，平时我们在开发活动过程中，活动静态页面通过Javascript访问前端CGI就是明显的主域相同，子域不同的跨域例子，一般活动静态页面都是类似这样的(http://业务名.xx.com/act/活动目录/xxx.html)，前端CGI 是这样的(<a href="http://www.xx.com/act/活动目录/xxx.cgi)" target="_blank" rel="noopener">http://www.xx.com/act/活动目录/xxx.cgi)</a>, 下面来看看我们都是如何处理跨域请求的：</p>
-<h1 id="动态创建script"><a href="#动态创建script" class="headerlink" title="动态创建script"></a>动态创建script</h1><p>虽然浏览器默认禁止了跨域访问，但并不禁止在页面中引用其他域的JS文件，script标签的src属性引用指向接收方的一个处理地址（后台），该地址返回的javascript方法会被执行，另外URL中可以传入一些参数，该方法只支持GET方式提交参数。我们常用FloadJS方法用的就是这种跨域方式。</p>
-<p><img src="/images/20180423/2018-04-23-02.jpeg" alt="alt text"></p>
-<h1 id="使用Jquery中getScript和getJson方法实现跨域"><a href="#使用Jquery中getScript和getJson方法实现跨域" class="headerlink" title="使用Jquery中getScript和getJson方法实现跨域"></a>使用Jquery中getScript和getJson方法实现跨域</h1><p>Jquery 的getScript 和 getJson方法都可以调用跨域的js或服务端脚本，但是它们的实现原理不一样。</p>
-<ol>
-<li>getScript 方法<br>语法：jQuery.getScript(url,success(response,status))<br>该函数是简写的 Ajax 函数，等价于：<br> $.ajax({<br>   Type: get,<br>   url: url,<br>   dataType: “script”,<br>   success: success<br> });<br>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。</li>
-</ol>
-<p><strong>实现跨域的原理：通过 GET 方式请求载入并执行一个 JavaScript 文件， 相当于通过src的形式的导入一个外部的js</strong></p>
-<ol start="2">
-<li>getJson方法<br>语法：jQuery.getJSON(url,data,success(data,status,xhr))<br>该函数是简写的 Ajax 函数，等价于：<br> $.ajax({<br>   url: url,<br>   data: data,<br>   success: callback,<br>   dataType: json<br> });<br>在 jQuery 1.2 中，您可以通过使用 JSONP 形式的回调函数来加载其他网域的 JSON 数据，如 “myurl?callback=?”。jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。<br><strong>实现跨域的原理：采用Jsonp原理实现跨域</strong><br>到这里大家有没有发现一个问题，好像一直都在讨论http get 请求方式的跨域问题，难道post 请求就不存在跨域问题吗？其实原生态From 表单 POST 到一个后台处理脚本是不存在跨域问题，因为提交过程不牵涉到JS操作其它域名的对象，可是POST表单后，页面会刷新，给用户带来的体验不佳，这时我们经常会想到用jquery ajax post 方法来提交表单， 虽然这种方式不会刷新页面，但是会存在跨域问题。因为ajax本身实际上是通过XMLHttpRequest对象来进行数据的交互，而浏览器出于安全考虑，是不允许js代码进行跨域操作，进而会发警告，所以jquery  ajax  post 是行不通的，可能这时有人会说，用jsonp数据类型啊，但是jsonp目前只支持get请求方式，对post请求不支持。我们在平时开发过程又不得不用post方式，因为get方式对请求的数量有大小限制，那在这种情况下如何保证用户良好的页面体验，又能解决跨域问题呢? 其实这时我们可以用最常见的document.domain + iframe 方式来实现。</li>
-</ol>
-<h1 id="document-domain-iframe"><a href="#document-domain-iframe" class="headerlink" title="document.domain + iframe"></a>document.domain + iframe</h1><p>这种方式只适用主域名相同，子域名不同的情形，在我们项目开发过程，这种方式还是比较适用。</p>
-<h1 id="服务端代理"><a href="#服务端代理" class="headerlink" title="服务端代理"></a>服务端代理</h1><p>从上面的说明可以看到，客户端的解决方案局存在一定的局限性，而且对于ajax跨域请求，无论两个域是否属于同个基础域，都无法在客户端加以解决，也就是说如果我们要想在ajax请求中访问其他域下的数据，就只能通过服务端进行处理了。服务端的解决方案的基本原理就是，由客户端将请求发给本域服务器，再由本域服务器的代理来请求数据并将响应返回给客户端。</p>
-<h1 id="使用HTML-5-postMessage方式"><a href="#使用HTML-5-postMessage方式" class="headerlink" title="使用HTML 5  postMessage方式"></a>使用HTML 5  postMessage方式</h1><p>HTML5中最酷的新功能之一就是 跨文档消息传输Cross Document Messaging。下一代浏览器都将支持这个功能：Chrome 2.0+、Internet Explorer 8.0+, Firefox 3.0+, Opera 9.6+, 和 Safari 4.0+ 。 Facebook已经使用了这个功能，用postMessage支持基于web的实时消息传递。<br>otherWindow.postMessage(message, targetOrigin);<br>otherWindow: 对接收信息页面的window的引用。可以是页面中iframe的contentWindow属性；window.open的返回值；通过name或下标从window.frames取到的值。<br>message: 所要发送的数据，string类型。<br>targetOrigin: 用于限制otherWindow，“*”表示不作限制<br>a.com/index.html中的代码。<br><strong>但是HTML5 在IE6, IE7浏览器下不兼容，目前移动端解决跨域问题用得比较多， PC机上用得比较少。</strong></p>
-<h1 id="使用flash"><a href="#使用flash" class="headerlink" title="使用flash"></a>使用flash</h1><p>如果你要读取一个外部文件，比如swf，picture，mp3等等，那么就需要一个跨域策略文件,allow-access-from domain表示允许访问的URl，如果有多个依次添加，如果允许所有就一个 allow-access-from domain = “*”就可以了。</p>
-<h1 id="个人小结"><a href="#个人小结" class="headerlink" title="个人小结"></a>个人小结</h1><p>在项目开发过程如果能用get方式解决的就尽量使用它，毕竟get的性能也比post高，而且处理get跨域请求的方法也比较多，比如用jquery库的 getScript和getJson方法。如果提交的数据比较大，一定用post方式提交，并且考虑用户的功能体验，可以用document.domain + iframe的方式来处理。</p>
-
-          
+          最近在项目开发的过程中遇到一些Javascript 跨域请求的问题，今天抽空对其进行总结一下，以备后用，也希望同学们在遇到类似问题的时候可以有所帮助。
+Javascript跨域问题是web开发人员最常碰到的一个问题之一。所谓Javascript跨域问题，是指在一个域下的页面中通过js访问另一个不同域
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Javascript/javascript跨域/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2239,71 +1878,16 @@
       
         
           
-            <p>感叹技术带给未来世界的冲击，也担忧未来世界变化的样子！</p>
-<p>技术带来的发展，冲击着很多岗位，特别是先从容易被复制和替换的低级工作岗位，比如汽车司机，银行柜员，物流快递人员 等，我在想，当地球上所有汽车都连成一个大的网络，实现无人驾驶，那司机，和快递人员，还有交通警察就会完全失业了！这个时间会出现在什么时候？ 你猜下！</p>
-<p>深切明白到这个世界上没有安全的工作岗位，终身学习？“终身学习”这个词完全没错，但是想通过“终身学习”保持职业竞争力，我觉得不太可能。人类社会的就业形态正在发生深刻的改变，“终生职业”越来越少了。每个人都应该尽早打算。</p>
-<p>当你熟悉科技史以后，再看待历史的观点，再一次发生了巨大的变化。我现在认为，主导历史的因素，短期（一年到几年）是政治，中期（几年到几十年）是经济，长期（几十年到几百年）则是技术。</p>
-<p>长期来看，政治和经济都不太重要，影响不了趋势，真正起决定性作用的是技术。政治和经济只能改变资源的分配和价格，只有技术才能创造出新东西。政治和经济只能使人类在平面上移动，只有技术才能使得人类向上提升，进入下一个阶段。从石器时代，铁器时代，四大发明，工业革命，蒸汽机等无一不是技术推进着社会的演变。一想到我的寿命只有几十年，我就感到特别难过。倒不是因为我害怕死亡，而是因为我将没有机会看到，未来一千年中各种新奇有趣的新技术。</p>
-<p>未来，人类可能会分化为两个主要的等级：一个全新的更先进的精英阶级，很聪明，很富有，有更好的基因和更长的寿命；还有一个全新的一无用处的无产阶级，他们将越来越穷地等待死亡，可能变成没有工作、没有目标、整日靠吸毒度日、戴着VR头盔消磨时光的乌合之众。随着人工智能变得越来越聪明，会有更多的人被挤出就业市场。没人知道大学该学什么，因为没人知道20岁的时候学的东西到了40岁还有没有用。等你知道的时候，已经有数十亿人变得一点用都没有了。这不是偶然，而是必然。</p>
-<p>大学课程是为了那些不知道学什么的人设计的，千万不要因为自己找不到方向，而被这些课程”画地为牢“限制住。你要主动去接触和学习，那些自己感兴趣的东西。引用一个网友的话，”你要做的就是自主、跨界、终身学习“。我后悔读了大学，更后悔没这样的觉悟！</p>
-<p>给自己的职业建议：</p>
-<h1 id="1-建议"><a href="#1-建议" class="headerlink" title="1.建议"></a>1.建议</h1><p>虽然很多人在选择职业时受到家庭、环境等方面因素的影响，不一定能从事自己非常感兴趣的工作，但是如果可能的话，一定要以兴趣为要。这样在工作时会很开心，在个人发展方面也会取得很好的成就。</p>
-<p>因为只有兴趣才能使你乐在其中，乐在其中你才会产生热情，充满热情才能使你做到卓越。</p>
-<h1 id="2-认知"><a href="#2-认知" class="headerlink" title="2.认知"></a>2.认知</h1><p>认知影响态度，态度决定一切。</p>
-<p>侯捷老师认为，一个人在选择发展道路时，尤其重要的是要对自己有一个正确的认知。每个人的兴趣可能会变，有些人看到某个行业有发展，有前途，因此对这个行业、这条路产生很大兴趣，这是非常可能的。但是每个人的本质基本不变，你是否甘于寂寞，是否能够与寂寞为伍？你的抗压性怎样？你的毅力强不强？你的心理素质如何？这些特质都是不易改变的，而且只有你自己才能给出这些问题的准确答案。只有对自己有了正确的认知后，才能决定往哪个方向发展。</p>
-<p>他认为，做 IT 产业非常寂寞，也非常辛苦，大家可能在周末的晚上都要加班，这就要求从事该产业的人必须甘于寂寞，具备一定的忍耐力。侯捷先生在年轻的时候非常努力，曾被称为部门的“门神”，通常都是最早来，最晚走。他认为如果一个人喜欢交际应酬，喜欢公关，就应该尽早离开这个行业，因为选择道路一定要忠实于你的本质、你的兴趣。</p>
-<p>我补充一点，软件工程师主要跟机器打交道，而不是跟人打交道。有时，你会整整一天坐在电脑屏幕前，不说一句话，全神贯注地调试软件。所以，如果你特别喜欢社交场合，喜欢跟人互动，你可能不适合当软件工程师。</p>
-<h1 id="3-EQ（情商）"><a href="#3-EQ（情商）" class="headerlink" title="3.EQ（情商）"></a>3.EQ（情商）</h1><p>有能力读完大学的人，聪明才智基本上处于同一水平，没有人可以凭借聪明就可以取得成功。尤其是在进入社会后聪明才智已经退为次要位置，人们更重视 EQ 方面的东西，包括你的人际关系能力、沟通表达能力，抗压性、处理危机的能力等等。</p>
-<h1 id="4-学技术要掌握本质"><a href="#4-学技术要掌握本质" class="headerlink" title="4.学技术要掌握本质"></a>4.学技术要掌握本质</h1><p>我们在学习技术时应该注意掌握技术的本质性、不变性和可复用性。本质的东西不易变，不易变就可复用，这三者是一体的。</p>
-<p>在接触先进的技术时，如果我们能将它的底层结构 、本质性的东西搞清楚，会给我们带来莫大的帮助。本质性、结构性的东西属于基础建设方面的问题，它对我们做项目可能不会带来直接的帮助，但在无形中会带来很大的影响，无形的通常是最宝贵的！世界上没有万变不变的手法，只有万变不变的宗旨。</p>
-<h1 id="5-刻苦修炼内功"><a href="#5-刻苦修炼内功" class="headerlink" title="5.刻苦修炼内功"></a>5.刻苦修炼内功</h1><p>学武的人都必须从最基本的马步、吐纳等内功方面学起，招术很重要，但如果没有内功方面的基础，招术也只能停留在基本的层面，不会到达很高的成就。</p>
-<p>在技术追求方面也一样，我们有时候会太热心于学习业界的新技术，每一样都想沾一点。其实不必太急，基本功的东西更重要，研究得扎实一些，招术就比较容易创作了。</p>
-<h1 id="6-唯坚持得成功。"><a href="#6-唯坚持得成功。" class="headerlink" title="6.唯坚持得成功。"></a>6.唯坚持得成功。</h1><p>坚持、毅力对一个人的成功是最重要的。有一句话说：在大树底下站久了，树阴就是你的。</p>
-<p>侯捷老师自认才能平庸，但很能坚持。他的这个个性在朋友之间是被称道的。虽然有时坚持并不代表一定成功，但只有坚持才能有成功的机会。年轻时尽量刻苦一些，使肉体承受最大的痛苦，年龄稍大一些的时候才能享受成果。有一句话“退一步海阔天空”，但侯捷先生更希望大家“撑一下海阔天空”，一试再试做不成，再试一下。</p>
-<h1 id="7-不要别人点什么，就做什么"><a href="#7-不要别人点什么，就做什么" class="headerlink" title="7.不要别人点什么，就做什么"></a>7.不要别人点什么，就做什么</h1><p>尼古拉斯.泽卡斯的第一份工作，只干了8个月，那家公司就倒闭了。他问经理，接下来他该怎么办，经理说：</p>
-<blockquote>
-</blockquote>
-<p>”小伙子，千万不要当一个被人点菜的厨师，别人点什么，你就烧什么。不要接受那样一份工作，别人下命令你该干什么，以及怎么干。你要去一个地方，那里的人肯定你对产品的想法，相信你的能力，放手让你去做。“</p>
-<blockquote>
-</blockquote>
-<p>他从此明白，单单实现一个产品是不够的，你还必须参与决定怎么实现。好的工程师并不仅仅服从命令，而且还给出反馈，帮助产品的拥有者改进它。</p>
-<h1 id="8-推销自己"><a href="#8-推销自己" class="headerlink" title="8.推销自己"></a>8.推销自己</h1><p>泽卡斯进入雅虎公司以后，经理有一天跟他谈话，觉得他还做得不够。</p>
-<blockquote>
-</blockquote>
-<p>”你工作得很好，代码看上去不错，很少出Bug。但是，问题是别人都没看到这一点。为了让其他人相信你，你必须首先让别人知道你做了什么。你需要推销自己，引起别人的注意。“</p>
-<blockquote>
-</blockquote>
-<p>他这才意识到，即使做出了很好的工作，别人都不知道，也没用。做一个角落里静静编码的工程师，并不可取。你的主管会支持你，但是他没法替你宣传。公司的其他人需要明白你的价值，最好的办法就是告诉别人你做了什么。一封简单的 Email：”嗨，我完成了 XXX，欢迎将你的想法告诉我“，就很管用。</p>
-<h1 id="9-学会带领团队"><a href="#9-学会带领团队" class="headerlink" title="9.学会带领团队"></a>9.学会带领团队</h1><p>工作几年后，已经没人怀疑泽卡斯的技术能力了，大家知道他能写出高质量的可靠代码。有一次，他问主管，怎么才能得到提升，主管说：</p>
-<blockquote>
-</blockquote>
-<p>”当你的技术能力过关以后，就要考验你与他人相处的能力了。“</p>
-<blockquote>
-</blockquote>
-<p>于是，他看到了，自己缺乏的是领导能力，如何带领一个团队，有效地与其他人协同工作，取到更大的成果。</p>
-<h1 id="10-生活才是最重要的"><a href="#10-生活才是最重要的" class="headerlink" title="10.生活才是最重要的"></a>10.生活才是最重要的</h1><p>有一段时间，泽卡斯在雅虎公司很有挫折感，对公司的一些做法不认同，经常会对别人发火。他问一个同事，后者怎么能对这种事情保持平静，同事回答：</p>
-<blockquote>
-</blockquote>
-<p>”你要想通，这一切并不重要。有人提交了烂代码，网站下线了，又怎么样？工作并不是你的整个生活。它们不是真正的问题，只是工作上的问题。真正重要的事情都发生在工作以外。我回到家，家里人正在等我，这才重要啊。“</p>
-<blockquote>
-</blockquote>
-<p>从此，他就把工作和生活分开了，只把它当作“工作问题”看待。这样一来，对工作就总能心平气和，与人交流也更顺利了。</p>
-<h1 id="11-自己找到道路"><a href="#11-自己找到道路" class="headerlink" title="11.自己找到道路"></a>11.自己找到道路</h1><p>泽卡斯被提升为主管以后，不知道该怎么做。他请教了上级，上级回答：</p>
-<blockquote>
-</blockquote>
-<p>”以前都是我们告诉你做什么，从现在开始，你必须自己回答这个问题了，我期待你来告诉我，什么事情需要做。“</p>
-<blockquote>
-</blockquote>
-<p>很多工程师都没有完成这个转变，如果能够做到，可能就说明你成熟了，学会了取舍。你不可能把时间花在所有事情上面，必须找到一个重点。</p>
-<h1 id="12-把自己当成主人"><a href="#12-把自己当成主人" class="headerlink" title="12.把自己当成主人"></a>12.把自己当成主人</h1><p>泽卡斯每天要开很多会，有些会议根本无话可说。他对一个朋友说，我不知道自己为什么要参加这个会，也没有什么可以贡献，朋友说：</p>
-<blockquote>
-</blockquote>
-<p>”不要再去开这样的会了。你参加一个会，那是因为你参与了某件事。如果不确定自己为什么要在场，就停下来问。如果这件事不需要你，就离开。不要从头到尾都静静地参加一个会，要把自己当成负责人，大家会相信你的。“</p>
-<blockquote>
-</blockquote>
-<p>从那时起，他从没有一声不发地参加会议。他确保只参加那些需要他参加的会议。</p>
-
-          
+          感叹技术带给未来世界的冲击，也担忧未来世界变化的样子！
+技术带来的发展，冲击着很多岗位，特别是先从容易被复制和替换的低级工作岗位，比如汽车司机，银行柜员，物流快递人员 等，我在想，当地球上所有汽车都连成一个大的网络，实现无人驾驶，那司机，和快递人员，还有交通警察就会完全失业了！这个时间会出现在什么时
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/读后感/未来世界的幸存者读后感/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2474,18 +2058,15 @@
       
         
           
-            <h1 id="同一个表，group-by-对不同字段进行不同条件统计"><a href="#同一个表，group-by-对不同字段进行不同条件统计" class="headerlink" title="同一个表，group by 对不同字段进行不同条件统计"></a>同一个表，group by 对不同字段进行不同条件统计</h1><p>例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	self_wechatid,</span><br><span class="line">	count(*) AS total,</span><br><span class="line">	sum(IF(gender = 1, 1, 0)) AS man,</span><br><span class="line">	sum(IF(gender = 2, 1, 0)) AS girl,</span><br><span class="line">	(</span><br><span class="line">		count(*) - sum(IF(gender = 1, 1, 0)) - sum(IF(gender = 2, 1, 0))</span><br><span class="line">	) AS non</span><br><span class="line">FROM</span><br><span class="line">	al_wx_contact</span><br><span class="line">WHERE</span><br><span class="line">	create_time &gt; 1526730791</span><br><span class="line">GROUP BY</span><br><span class="line">	self_wechatid;</span><br><span class="line">	</span><br><span class="line">/*延伸拓展*/</span><br><span class="line">SELECT</span><br><span class="line">	b.uid,</span><br><span class="line">	u.username,</span><br><span class="line">	count(*) AS total,</span><br><span class="line">	sum(IF(c.gender = 1, 1, 0)) AS man,</span><br><span class="line">	sum(IF(c.gender = 2, 1, 0)) AS girl,</span><br><span class="line">	(</span><br><span class="line">		count(*) - sum(IF(c.gender = 1, 1, 0)) - sum(IF(c.gender = 2, 1, 0))</span><br><span class="line">	) AS non</span><br><span class="line">FROM</span><br><span class="line">	al_wx_contact c left join al_wx_weixin_base b on c.self_wechatid = b.self_wechatid left join al_users u on b.uid = u.uid</span><br><span class="line">WHERE</span><br><span class="line">	c.create_time &gt; 0</span><br><span class="line">GROUP BY</span><br><span class="line">	b.uid</span><br><span class="line">ORDER BY total desc;</span><br></pre></td></tr></table></figure></p>
-<h1 id="同一张表中复制（有主键）"><a href="#同一张表中复制（有主键）" class="headerlink" title="同一张表中复制（有主键）"></a>同一张表中复制（有主键）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表1(字段1,字段2,字段3) select 字段1,字段2,字段3 from 表1 where id=1</span><br></pre></td></tr></table></figure>
-<h1 id="连表（含where条件）更新Update语句"><a href="#连表（含where条件）更新Update语句" class="headerlink" title="连表（含where条件）更新Update语句"></a>连表（含where条件）更新Update语句</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update sumholdtime s,province b set s.province = b.province where s.area_code=b.area_code;</span><br><span class="line">update t_tc_telephone s,t_mobile_number_section b set s.province=b.province,s.city=b.city where s.area_code = b.area_code and s.area_code != &apos;&apos;;</span><br><span class="line">update t_non_tc_telephone s,t_mobile_number_section b set s.province=b.province,s.city=b.city where s.area_code = b.area_code and s.area_code != &apos;&apos;;</span><br></pre></td></tr></table></figure>
-<h1 id="从数据表t1-中把那些id值在数据表t2-里有匹配的记录全删除掉"><a href="#从数据表t1-中把那些id值在数据表t2-里有匹配的记录全删除掉" class="headerlink" title="从数据表t1 中把那些id值在数据表t2 里有匹配的记录全删除掉"></a>从数据表t1 中把那些id值在数据表t2 里有匹配的记录全删除掉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE t1 FROM t1,t2 WHERE t1.id=t2.id  </span><br><span class="line">  或</span><br><span class="line">DELETE  FROM t1 USING t1,t2 WHERE t1.id=t2.id</span><br></pre></td></tr></table></figure>
-<h1 id="从数据表t1里在数据表t2里没有匹配的记录查找出来并删除掉"><a href="#从数据表t1里在数据表t2里没有匹配的记录查找出来并删除掉" class="headerlink" title="从数据表t1里在数据表t2里没有匹配的记录查找出来并删除掉"></a>从数据表t1里在数据表t2里没有匹配的记录查找出来并删除掉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE t1 FROM t1 LEFT JOIN T2 ON t1.id=t2.id WHERE t2.id IS NULL </span><br><span class="line">或</span><br><span class="line">DELETE  FROM t1,USING t1 LEFT JOIN T2 ON t1.id=t2.id WHERE t2.id IS NULL</span><br></pre></td></tr></table></figure>
-<h1 id="从两个表中找出相同记录的数据并把两个表中的数据都删除掉"><a href="#从两个表中找出相同记录的数据并把两个表中的数据都删除掉" class="headerlink" title="从两个表中找出相同记录的数据并把两个表中的数据都删除掉"></a>从两个表中找出相同记录的数据并把两个表中的数据都删除掉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE t1,t2 FROM t1 LEFT JOIN t2 ON t1.id=t2.id WHERE t1.id=25</span><br></pre></td></tr></table></figure>
-<p>注意此处的delete t1,t2 from 中的t1,t2不能是别名<br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete t1,t2 from table_name as t1 left join table2_name as t2 on t1.id=t2.id where table_name.id=25</span><br></pre></td></tr></table></figure></p>
-<p>在数据里面执行是错误的（MYSQL 版本不小于5.0在5.0中是可以的）</p>
-<hr>
-<p><strong>后续持续更新中</strong></p>
-
-          
+          同一个表，group by 对不同字段进行不同条件统计例如下面的 根据  self_wechatid 进行group by ，统计出  性别总数，男总数(gender = 1为男)，女总数(gender = 2为男)，不详总数。123456789101112131415161718192021222
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Mysql/mysql 切合业务精用语句收集/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
